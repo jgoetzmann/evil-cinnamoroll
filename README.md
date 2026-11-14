@@ -1,5 +1,7 @@
 # 玉桂狗征女朋友 · Cinnamoroll is looking for a girlfriend
 
+**Live site:** https://jgoetzmann.github.io/evil-cinnamoroll/
+
 A one-page Chinese class blog (an ad for a boyfriend/girlfriend, 300–400字) that doubles as a very animated
 website. Plain HTML, CSS and JavaScript: no build step, no dependencies. GitHub Pages serves it as it is.
 
