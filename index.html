@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>玉桂狗征女朋友 · Cinnamoroll is looking for a girlfriend</title>
+  <meta name="description" content="A Chinese class blog: Cinnamoroll (玉桂狗) is looking for a girlfriend. Includes a spoof stock chart of his chip company, a cinnamon-roll tracker and a very strict application form.">
+  <meta name="theme-color" content="#bfe3fb">
+  <meta property="og:title" content="玉桂狗征女朋友 · Cinnamoroll is looking for a girlfriend">
+  <meta property="og:description" content="A Chinese class blog with a spoof stock chart, mini-games and a very strict application form.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='52' r='44' fill='%23e8b98c' stroke='%23b98a62' stroke-width='5'/%3E%3Ccircle cx='50' cy='50' r='35' fill='%23fbd7e3'/%3E%3Cpath d='M50 50a4 4 0 0 1 8 0a8 8 0 0 1-16 0a12 12 0 0 1 24 0a16 16 0 0 1-32 0a20 20 0 0 1 40 0' fill='none' stroke='%23b98a62' stroke-width='5' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="preload" href="fonts/nunito-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/zcool-kuaile-subset.woff2" as="font" type="font/woff2" crossorigin>
+  <script>document.documentElement.classList.add("js")</script>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+
+<!-- one cinnamon roll, reused everywhere -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="roll" viewBox="0 0 100 100">
+    <circle cx="50" cy="53" r="43" fill="#e6b184" stroke="#b98a62" stroke-width="4"/>
+    <circle cx="50" cy="50" r="35" fill="#fbd7e3"/>
+    <path d="M50 50a4 4 0 0 1 8 0a8 8 0 0 1-16 0a12 12 0 0 1 24 0a16 16 0 0 1-32 0a20 20 0 0 1 40 0" fill="none" stroke="#b98a62" stroke-width="4.5" stroke-linecap="round"/>
+  </symbol>
+</svg>
+
+<a class="skip" href="#main">Skip to content</a>
+<div class="scroll-progress" aria-hidden="true"><i></i></div>
+<div class="sky" id="sky" aria-hidden="true">
+  <div class="cloud c1" data-speed="0.10"></div>
+  <div class="cloud c2" data-speed="0.18"></div>
+  <div class="cloud c3" data-speed="0.07"></div>
+  <div class="cloud c4" data-speed="0.14"></div>
+  <div class="cloud c5" data-speed="0.22"></div>
+</div>
+<canvas id="sparkles" aria-hidden="true"></canvas>
+
+<div class="tape" aria-hidden="true"><div class="tape-track" id="tape"></div></div>
+
+<header class="nav" id="nav">
+  <a class="brand" href="#top"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="#roll"/></svg><span lang="zh-CN">玉桂狗</span></a>
+  <nav aria-label="Sections">
+    <a href="#stock" data-nav="stock">Stock</a>
+    <a href="#about" data-nav="about">Personality</a>
+    <a href="#food" data-nav="food">Food</a>
+    <a href="#study" data-nav="study">Study</a>
+    <a href="#style" data-nav="style">Style</a>
+    <a href="#rules" data-nav="rules">Rules</a>
+    <a href="#contact" data-nav="contact" class="nav-cta">Apply 💌</a>
+  </nav>
+</header>
+
+<div class="tools" role="group" aria-label="Reading tools">
+  <button type="button" id="tool-gloss" aria-pressed="true"><span aria-hidden="true">拼</span> Glosses</button>
+  <button type="button" id="tool-grammar" aria-pressed="false"><span aria-hidden="true">✎</span> Grammar</button>
+</div>
+
+<main id="main">
+
+  <!-- ===================== HERO ===================== -->
+  <section class="hero" id="top">
+    <div class="wrap hero-grid">
+      <div class="hero-text">
+        <p class="eyebrow">Chinese class blog · looking for love</p>
+        <h1 id="title" lang="zh-CN">玉桂狗征女朋友</h1>
+        <p class="subtitle">Cinnamoroll is looking for a girlfriend</p>
+
+        <div class="bubble reveal">
+          <p class="zh" lang="zh-CN">玉桂狗，男，是一只小白狗。他是在云上的大学毕业的，现在是玉桂芯片<span class="gloss">(xīnpiàn, chip)</span>公司的老板，很会挣钱。他们公司的GPU，全世界的人都想买，股票<span class="gloss">(gǔpiào, stock)</span>先涨<span class="gloss">(zhǎng, to rise)</span>得很高。<mark class="g" title="后来 · later, afterwards">后来</mark>大家发现，<mark class="g" title="原来 · it turns out that…">原来</mark>他有过外遇<span class="gloss">(wàiyù, affair)</span>，股票<mark class="g" title="就 · (then) straight away / 一直 · continuously">就一直</mark>跌<span class="gloss">(diē, to fall)</span>。现在他想找新的女朋友，<mark class="g" title="说不定 · perhaps, maybe">说不定</mark>就是你！</p>
+        </div>
+
+        <div class="hero-cta reveal">
+          <a class="btn" href="#stock">📉 Watch his stock crash</a>
+          <a class="btn ghost" href="#contact">💌 Apply now</a>
+        </div>
+      </div>
+
+      <div class="hero-photo">
+        <figure class="polaroid tilt-r" id="hero-polaroid">
+          <img src="images/suit.webp" width="1200" height="1009" alt="Cinnamoroll (玉桂狗), a white puppy with long ears, in a blue polka-dot suit with a blue bow tie and a red rose, standing in front of a blue wall with white stars">
+          <figcaption>His one and only look: blue suit, blue bow tie 💙</figcaption>
+        </figure>
+        <span class="float f-a" aria-hidden="true">💙</span>
+        <span class="float f-b" aria-hidden="true">⭐</span>
+        <span class="float f-c" aria-hidden="true">☁️</span>
+        <span class="float f-d" aria-hidden="true">💗</span>
+      </div>
+    </div>
+    <a class="scroll-cue" href="#stock" aria-label="Scroll to the stock chart"><span></span></a>
+  </section>
+
+  <!-- ===================== STOCK CHART ===================== -->
+  <section class="section" id="stock" aria-labelledby="stock-h">
+    <div class="wrap">
+      <header class="sec-head reveal">
+        <p class="eyebrow">Spoof market report · all numbers made up</p>
+        <h2 id="stock-h"><span class="ticker-pill">CINN</span> <span lang="zh-CN">玉桂芯片</span> Inc.</h2>
+        <p class="lede">His GPUs made the stock go up <span lang="zh-CN">涨</span>. Then the affair <span lang="zh-CN">外遇</span> came out and it kept going down <span lang="zh-CN">跌</span>. Press play, hover the line, drag the slider, or click a pin to time-travel.</p>
+      </header>
+
+      <article class="chart-card reveal" id="chart-card" aria-label="Interactive spoof stock chart for CINN">
+        <div class="chart-top">
+          <div class="hero-price">
+            <span class="hp-label">CINN · closing price</span>
+            <output class="hp-value" id="px" aria-live="off">$12.00</output>
+            <span class="hp-row"><span class="chg" id="chg">▲ 0.0%</span><span class="phase" id="phase">Opening bell</span></span>
+          </div>
+          <dl class="stats">
+            <div class="stat"><dt>Date</dt><dd id="st-date">—</dd></div>
+            <div class="stat"><dt>From peak</dt><dd id="st-dd">0.0%</dd></div>
+            <div class="stat mood"><dt>Market mood</dt><dd><span id="st-mood">😍 Adored</span>
+              <span class="meter slim" role="meter" aria-label="Drop from peak" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="mood-meter"><i id="mood-fill"></i></span></dd></div>
+          </dl>
+        </div>
+
+        <div class="chart-wrap" id="chart-wrap">
+          <svg id="chart" role="img" aria-labelledby="chart-title chart-desc"></svg>
+          <div class="tip" id="tip" hidden></div>
+          <div class="banner" id="banner" aria-hidden="true">💔 <span lang="zh-CN">外遇</span> REVEALED!</div>
+        </div>
+
+        <div class="controls">
+          <button type="button" class="btn small" id="play" aria-label="Pause">⏸ Pause</button>
+          <button type="button" class="btn small ghost" id="replay">↻ Replay</button>
+          <label class="scrub"><span class="sr-only">Time travel: drag to move through the timeline</span>
+            <input type="range" id="scrub" min="0" max="1" value="0" step="1">
+          </label>
+          <button type="button" class="btn small whatif" id="whatif" aria-pressed="false">💌 If you apply…</button>
+        </div>
+
+        <p class="key" aria-hidden="true">
+          <span><i class="k-line up"></i> rally <span lang="zh-CN">涨</span></span>
+          <span><i class="k-line down"></i> falling <span lang="zh-CN">跌</span></span>
+          <span><i class="k-band"></i> the affair (still secret)</span>
+          <span><i class="k-dot"></i> news pin</span>
+          <span><i class="k-line fc"></i> made-up forecast</span>
+        </p>
+      </article>
+
+      <ol class="feed reveal" id="feed" aria-label="News timeline (click an item to jump to that day)"></ol>
+
+      <details class="table-view reveal">
+        <summary>Show the data as a table</summary>
+        <div class="table-scroll"><table id="data-table"><caption class="sr-only">Month-end closing price of CINN (made up)</caption></table></div>
+      </details>
+      <p class="fine reveal">Not real. Not financial advice. Please do not trade the stock of a cloud-dwelling puppy.</p>
+    </div>
+  </section>
+
+  <!-- ===================== PERSONALITY ===================== -->
+  <section class="section" id="about" aria-labelledby="about-h">
+    <div class="wrap two">
+      <div class="col">
+        <header class="sec-head reveal"><p class="eyebrow">Personality &amp; hobbies</p><h2 id="about-h">😄 Computer nerd, big smile</h2></header>
+        <div class="card text reveal">
+          <p class="zh" lang="zh-CN">他是个电脑迷，很开朗，爱开玩笑。就是有点儿丢三拉四，<mark class="g" title="一会儿…一会儿… · one moment…, the next moment…">一会儿</mark>找不到钥匙，<mark class="g" title="一会儿…一会儿…">一会儿</mark>忘了开会。</p>
+        </div>
+
+        <div class="card game reveal" id="keys">
+          <h3>🔑 Mini-game: find his keys</h3>
+          <p class="small">He has lost them again. Click a hiding spot.</p>
+          <div class="spots" role="group" aria-label="Hiding spots">
+            <button type="button" class="spot" data-spot="0"><span aria-hidden="true">🛋️</span>Couch</button>
+            <button type="button" class="spot" data-spot="1"><span aria-hidden="true">👖</span>Pocket</button>
+            <button type="button" class="spot" data-spot="2"><span aria-hidden="true">☁️</span>Cloud</button>
+            <button type="button" class="spot" data-spot="3"><span aria-hidden="true">💻</span>Laptop bag</button>
+            <button type="button" class="spot" data-spot="4"><span aria-hidden="true">📦</span>Roll box</button>
+            <button type="button" class="spot" data-spot="5"><span aria-hidden="true">🪴</span>Plant</button>
+          </div>
+          <p class="game-msg" id="keys-msg" role="status">Where could they be?</p>
+          <p class="scoreline">Found: <b id="keys-found">0</b> · Lost again: <b id="keys-lost">1</b></p>
+        </div>
+      </div>
+
+      <div class="col photos">
+        <figure class="polaroid tilt-l reveal">
+          <img src="images/plush-laptop.webp" width="422" height="422" loading="lazy" decoding="async" alt="A big white Cinnamoroll plush used as a wrist rest while someone types on a silver laptop">
+          <figcaption>Always at the keyboard. Even his plush works from home.</figcaption>
+        </figure>
+        <figure class="polaroid tilt-r reveal">
+          <img src="images/laughing.webp" width="1400" height="788" loading="lazy" decoding="async" alt="A sketch of Cinnamoroll laughing with his eyes closed and rosy cheeks">
+          <figcaption>Cheerful, and he never stops telling jokes.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FOOD ===================== -->
+  <section class="section" id="food" aria-labelledby="food-h">
+    <div class="wrap two flip">
+      <div class="col photos collage">
+        <figure class="polaroid tilt-l reveal">
+          <img src="images/hobby-cinnamon-roll.webp" width="960" height="723" loading="lazy" decoding="async" alt="A real cinnamon roll on a white plate next to a small coffee">
+          <figcaption>Roll number 1 of 3 <small>(photo: Andy Li, CC0)</small></figcaption>
+        </figure>
+        <figure class="polaroid tilt-r reveal">
+          <img src="images/teacup.webp" width="600" height="400" loading="lazy" decoding="async" alt="Cinnamoroll sitting in a big blue teacup, holding a pink cinnamon roll, surrounded by hearts">
+          <figcaption>Tea time, roll in hand.</figcaption>
+        </figure>
+        <figure class="polaroid tilt-l small reveal">
+          <img src="images/roll-eating.webp" width="676" height="681" loading="lazy" decoding="async" alt="Cinnamoroll happily eating a pink cinnamon roll with eyes closed">
+          <figcaption>Mmm. Sweet.</figcaption>
+        </figure>
+      </div>
+
+      <div class="col">
+        <header class="sec-head reveal"><p class="eyebrow">Dining habits</p><h2 id="food-h">🍥 Three rolls a day. No excuses.</h2></header>
+        <div class="card text reveal">
+          <p class="zh" lang="zh-CN"><mark class="g" title="在…上 · when it comes to… / in terms of…">在吃上</mark>，他最爱肉桂卷，又香又甜。<mark class="g" title="无论…都… · no matter how… (always)">无论</mark>多忙，他每天<mark class="g" title="无论…都…">都</mark><mark class="g" title="非…不可 · must; it has to be">非</mark>吃三个<mark class="g" title="非…不可">不可</mark>。他的口味不清淡，可是不喜欢咸的。<mark class="g" title="要是 · if">要是</mark>你只吃清蒸鱼，你们就<mark class="g" title="各…各的 · each does their own thing">各点各的</mark>吧。</p>
+        </div>
+
+        <div class="card game reveal" id="rolls">
+          <h3>🍥 Today's roll quota</h3>
+          <p class="small">Click a roll to eat it.</p>
+          <div class="roll-row" role="group" aria-label="Three cinnamon rolls">
+            <button type="button" class="roll" aria-label="Eat roll 1"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="#roll"/></svg></button>
+            <button type="button" class="roll" aria-label="Eat roll 2"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="#roll"/></svg></button>
+            <button type="button" class="roll" aria-label="Eat roll 3"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="#roll"/></svg></button>
+          </div>
+          <p class="game-msg" id="rolls-msg" role="status">0 of 3 eaten.</p>
+          <button type="button" class="btn small ghost" id="rolls-reset">☀️ A new day begins</button>
+        </div>
+
+        <div class="card reveal" id="taste">
+          <h3>👅 Taste profile</h3>
+          <div class="meter-row"><span>Sweet</span><span class="meter" role="meter" aria-valuemin="0" aria-valuemax="100" aria-valuenow="96" aria-label="Sweet 96 percent"><i style="--v:96%"></i></span><b>96%</b></div>
+          <div class="meter-row"><span>Rich &amp; heavy</span><span class="meter" role="meter" aria-valuemin="0" aria-valuemax="100" aria-valuenow="88" aria-label="Rich and heavy 88 percent"><i style="--v:88%"></i></span><b>88%</b></div>
+          <div class="meter-row"><span>Light <span class="gloss en" lang="zh-CN">清淡</span></span><span class="meter low" role="meter" aria-valuemin="0" aria-valuemax="100" aria-valuenow="9" aria-label="Light and bland 9 percent"><i style="--v:9%"></i></span><b>9%</b></div>
+          <div class="meter-row"><span>Salty</span><span class="meter low" role="meter" aria-valuemin="0" aria-valuemax="100" aria-valuenow="4" aria-label="Salty 4 percent"><i style="--v:4%"></i></span><b>4%</b></div>
+
+          <h3 class="mt">🍽️ Date-night test</h3>
+          <div class="seg" role="group" aria-label="What do you order?">
+            <button type="button" aria-pressed="true" data-order="rolls">🍥 Cinnamon rolls</button>
+            <button type="button" aria-pressed="false" data-order="fish">🐟 Steamed fish</button>
+          </div>
+          <p class="game-msg" id="order-msg" role="status">Same table, same plate. 💕</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== STUDY ===================== -->
+  <section class="section" id="study" aria-labelledby="study-h">
+    <div class="wrap two">
+      <div class="col">
+        <header class="sec-head reveal"><p class="eyebrow">Academic plan</p><h2 id="study-h">🎓 From circuits to a master's</h2></header>
+        <div class="card text reveal">
+          <p class="zh" lang="zh-CN">他大学学的是电机工程<span class="gloss">(diànjī gōngchéng, electrical engineering)</span>，整天跟电脑<mark class="g" title="打交道 · to deal with, to have dealings with">打交道</mark>，一天没有电脑<mark class="g" title="就受不了 · can't stand it / can't bear it">就受不了</mark>。他<mark class="g" title="打算 · to plan to">打算</mark>再申请一个电脑硕士<span class="gloss">(shuòshì, master's degree)</span>，<mark class="g" title="希望 · to hope">希望</mark>你也在选几门电脑课，<mark class="g" title="不管…都… · no matter how…">不管</mark>功课多难<mark class="g" title="不管…都…">都</mark>不怕。</p>
+        </div>
+
+        <div class="card game reveal" id="homework">
+          <h3>📚 Homework difficulty vs. his fear</h3>
+          <label class="range-label" for="diff">Difficulty: <b id="diff-val">5</b> / 10</label>
+          <input type="range" id="diff" min="1" max="10" value="5" step="1">
+          <div class="meter-row"><span>Fear level</span><span class="meter low" role="meter" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="Fear level 0 percent"><i style="--v:0%"></i></span><b>0%</b></div>
+          <p class="game-msg" id="diff-msg" role="status">😎 Easy. He has a GPU.</p>
+        </div>
+
+        <div class="terminal reveal" id="terminal" role="group" aria-label="A fake terminal window">
+          <div class="term-bar"><i></i><i></i><i></i><span>cinnamoroll@cloud-university</span></div>
+          <pre id="term-out" aria-live="off"></pre>
+        </div>
+      </div>
+
+      <div class="col mosaic">
+        <figure class="tile wide reveal">
+          <img src="images/hobby-ee-lab.webp" width="960" height="720" loading="lazy" decoding="async" alt="An electrical engineering lab bench with oscilloscopes and test equipment">
+          <figcaption>Electrical engineering lab</figcaption>
+        </figure>
+        <figure class="tile reveal">
+          <img src="images/hobby-gpu.webp" width="960" height="643" loading="lazy" decoding="async" alt="A GPU package with its memory chips, seen from above">
+          <figcaption>A GPU. People want to buy these.</figcaption>
+        </figure>
+        <figure class="tile reveal">
+          <img src="images/hobby-chip-die.webp" width="960" height="640" loading="lazy" decoding="async" alt="A microchip die with gold bond wires under a microscope">
+          <figcaption>A chip, up close <span class="gloss en" lang="zh-CN">芯片</span></figcaption>
+        </figure>
+        <figure class="tile wide reveal">
+          <img src="images/hobby-circuit-board.webp" width="960" height="720" loading="lazy" decoding="async" alt="A green circuit board on a wooden table">
+          <figcaption>Circuit board: his idea of a nice view</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== STYLE ===================== -->
+  <section class="section" id="style" aria-labelledby="style-h">
+    <div class="wrap two flip">
+      <div class="col">
+        <figure class="fitting reveal" id="fitting">
+          <div class="fit-frame" id="fit-frame">
+            <img id="fit-img" src="images/suit.webp" width="1200" height="1009" loading="lazy" decoding="async" alt="Cinnamoroll in his blue polka-dot suit and blue bow tie, with a red rose on the lapel">
+            <span class="stamp" id="fit-stamp" aria-hidden="true">NOPE</span>
+          </div>
+          <figcaption id="fit-cap">Fitting room: the blue suit looks great.</figcaption>
+        </figure>
+        <div class="fit-controls reveal">
+          <button type="button" class="btn" id="fit-btn">👗 Try a different outfit</button>
+          <span class="scoreline">Outfits rejected: <b id="fit-count">0</b></span>
+        </div>
+      </div>
+
+      <div class="col">
+        <header class="sec-head reveal"><p class="eyebrow">Shopping preferences</p><h2 id="style-h">🛍️ One look. Always blue.</h2></header>
+        <div class="card text reveal">
+          <p class="zh" lang="zh-CN"><mark class="g" title="在…上 · when it comes to…">在购物上</mark>，他只有一个样子：蓝色的西装<span class="gloss">(xīzhuāng, suit)</span>和蓝色的领结。他<mark class="g" title="不在乎 · not care about">不在乎</mark>名牌，只在乎质量。便宜的衣服<mark class="g" title="A是A，可是… · A is A, but… (concession)">便宜是便宜</mark>，<mark class="g" title="A是A，可是… · …but">可是</mark>穿一两次就坏了。</p>
+        </div>
+        <div class="card reveal" id="quality">
+          <h3>🧵 Quality check</h3>
+          <div class="meter-row"><span>Brand-name obsession</span><span class="meter low" role="meter" aria-valuemin="0" aria-valuemax="100" aria-valuenow="2" aria-label="Brand-name obsession 2 percent"><i style="--v:2%"></i></span><b>2%</b></div>
+          <div class="meter-row"><span>Cares about quality</span><span class="meter" role="meter" aria-valuemin="0" aria-valuemax="100" aria-valuenow="98" aria-label="Cares about quality 98 percent"><i style="--v:98%"></i></span><b>98%</b></div>
+          <div class="meter-row"><span>Cheap shirt, after 2 wears</span><span class="meter broken" role="meter" aria-valuemin="0" aria-valuemax="100" aria-valuenow="6" aria-label="Cheap shirt condition after two wears: 6 percent"><i style="--v:6%"></i></span><b>6% 💥</b></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== RULES ===================== -->
+  <section class="section" id="rules" aria-labelledby="rules-h">
+    <div class="wrap two">
+      <div class="col">
+        <header class="sec-head reveal"><p class="eyebrow">Requirements for the dream girlfriend</p><h2 id="rules-h">📝 His standards</h2></header>
+        <div class="card text reveal">
+          <p class="zh" lang="zh-CN">他的标准是：你不能是间谍<span class="gloss">(jiàndié, spy)</span>，不能是他的同事，也不能是猫。另外，你得<mark class="g" title="比…还… · even more … than…">比他还</mark>爱吃肉桂卷，还要听得懂他的笑话<span class="gloss">(xiàohua, joke)</span>：他<mark class="g" title="一…就… · as soon as … then …">一</mark>开玩笑，你<mark class="g" title="一…就…">就</mark>笑。</p>
+        </div>
+
+        <div class="card reveal" id="joke">
+          <h3>😆 Laugh test</h3>
+          <p class="small">He is about to tell a joke. You must laugh.</p>
+          <blockquote id="joke-text">“How does Cinnamoroll fix a bug? He rolls it back.”</blockquote>
+          <div class="joke-actions">
+            <button type="button" class="btn small" id="laugh" lang="zh-CN">😆 哈哈哈</button>
+            <button type="button" class="btn small ghost" id="joke-next">Next joke</button>
+            <span class="scoreline">Laughs: <b id="laugh-count">0</b></span>
+          </div>
+          <p class="game-msg" id="laugh-msg" role="status">He is watching your face…</p>
+        </div>
+      </div>
+
+      <div class="col">
+        <form class="card checker reveal" id="checker" aria-labelledby="checker-h" onsubmit="return false">
+          <h3 id="checker-h">✅ Are you the one? Application checker</h3>
+          <fieldset data-q="spy" data-ok="no"><legend>Are you a spy <span class="gloss en" lang="zh-CN">间谍</span>?</legend>
+            <label><input type="radio" name="spy" value="yes"><span>Yes</span></label><label><input type="radio" name="spy" value="no"><span>No</span></label></fieldset>
+          <fieldset data-q="coworker" data-ok="no"><legend>Are you his coworker <span class="gloss en" lang="zh-CN">同事</span>?</legend>
+            <label><input type="radio" name="coworker" value="yes"><span>Yes</span></label><label><input type="radio" name="coworker" value="no"><span>No</span></label></fieldset>
+          <fieldset data-q="cat" data-ok="no"><legend>Are you a cat <span class="gloss en" lang="zh-CN">猫</span>?</legend>
+            <label><input type="radio" name="cat" value="yes"><span>Yes</span></label><label><input type="radio" name="cat" value="no"><span>No</span></label></fieldset>
+          <fieldset data-q="rolls" data-ok="yes"><legend>Do you love cinnamon rolls more than he does?</legend>
+            <label><input type="radio" name="rolls" value="yes"><span>Yes</span></label><label><input type="radio" name="rolls" value="no"><span>No</span></label></fieldset>
+          <fieldset data-q="laugh" data-ok="yes"><legend>When he jokes, do you laugh?</legend>
+            <label><input type="radio" name="laugh" value="yes"><span>Yes</span></label><label><input type="radio" name="laugh" value="no"><span>No</span></label></fieldset>
+          <div class="verdict" id="verdict" role="status" aria-live="polite" data-state="idle">Answer all five questions.</div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CONTACT ===================== -->
+  <section class="section last" id="contact" aria-labelledby="contact-h">
+    <div class="wrap">
+      <div class="contact-card card reveal">
+        <div class="contact-text">
+          <p class="eyebrow">Contact him</p>
+          <h2 id="contact-h">💌 He is already waiting</h2>
+          <p class="zh big" lang="zh-CN"><mark class="g" title="要是…就… · if …, then …">要是</mark>你就是他要找的人，<mark class="g" title="要是…就… · then…">就</mark>快在这里跟他联系吧！<mark class="g" title="实际上 · in fact, actually">实际上</mark>，他已经在等你了！</p>
+          <p class="status"><i class="dot" aria-hidden="true"></i> Status: online · refreshing his inbox every 3 seconds</p>
+          <img class="plane-deco" src="images/plane.webp" width="640" height="498" loading="lazy" decoding="async" alt="Cinnamoroll flying a little blue and pink propeller plane">
+        </div>
+        <form class="contact-form" id="contact-form" novalidate>
+          <label for="c-name">Your name</label>
+          <input id="c-name" name="name" type="text" autocomplete="off" placeholder="(optional)">
+          <label for="c-msg">Your message to Cinnamoroll</label>
+          <textarea id="c-msg" name="message" rows="4" placeholder="I love cinnamon rolls more than you do."></textarea>
+          <button class="btn" type="submit">✈️ Send by paper plane</button>
+          <p class="fine" id="c-status" role="status">Demo only: this page is a class project, so nothing is sent or saved.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <p class="foot-title">玉桂狗征女朋友 · a Chinese class blog</p>
+    <p>Cinnamoroll (<span lang="zh-CN">玉桂狗</span>) is a character of Sanrio Co., Ltd. This is a non-commercial, student-made fan page. The stock chart, the affair and the company are fiction.</p>
+    <details class="credits">
+      <summary>Photo credits</summary>
+      <ul>
+        <li>Cinnamoroll artwork and photos: supplied by the blog author. Cinnamoroll © Sanrio.</li>
+        <li><a href="https://commons.wikimedia.org/wiki/File:Cinnamon_roll_-_Clifton_Road_Coffee_2026-03-17.jpg">Cinnamon roll – Clifton Road Coffee</a> by Andy Li · <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a></li>
+        <li><a href="https://commons.wikimedia.org/wiki/File:AMD_Fiji_GPU_package_with_GPU,_HBM_memory_and_interposer.jpg">AMD Fiji GPU package</a> by C. Spille / pcgameshardware.de · <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a></li>
+        <li><a href="https://commons.wikimedia.org/wiki/File:AMD3101E.jpg">AMD3101E (die)</a> by Mister rf · <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a></li>
+        <li><a href="https://commons.wikimedia.org/wiki/File:Electrical_Engineering_Lab_Station_(3955361228).jpg">Electrical Engineering Lab Station</a> by JohnRH4 · <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC BY-SA 2.0</a></li>
+        <li><a href="https://commons.wikimedia.org/wiki/File:Caviar_2340_Hard_Drive_Circuit_Board_Side_1.jpg">Caviar 2340 Hard Drive Circuit Board</a> by ComputerUserUser · <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a></li>
+        <li>Wikimedia photos were resized, compressed and converted to WebP for this page.</li>
+      </ul>
+    </details>
+  </div>
+</footer>
+
+<!-- lives at page level: an ancestor with a transform/translate would turn position:fixed into position:absolute -->
+<img class="plane-fly" id="plane-fly" src="images/plane.webp" width="640" height="498" alt="" aria-hidden="true">
+
+<noscript><p class="noscript">This page is more fun with JavaScript on: the stock chart, mini-games and application form need it. The blog text above still works.</p></noscript>
+</body>
+</html>
