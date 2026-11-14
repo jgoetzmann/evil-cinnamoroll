@@ -37,6 +37,12 @@ python3 -m http.server 8000     # then open http://localhost:8000
   (hover a highlight for its meaning).
 - The contact form is a demo: nothing is sent or stored.
 
+## No English on the page
+
+Every label, button, caption and chart annotation is emoji or Chinese (section titles: 吃饭的习惯, 学校的打算, 购物标准,
+女朋友的标准, 发送爱的邮件 …). The only Latin letters left are the pinyin glosses, `GPU` (it is in the blog text) and the
+photo credits. Little Cinnamoroll faces (cropped from the supplied photos) "say" the game messages.
+
 ## Editing the blog text
 
 The seven paragraphs live in `index.html` inside `<p class="zh">`. Glosses are `<span class="gloss">(…)</span>` and grammar

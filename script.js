@@ -18,7 +18,7 @@
   const usd = (v) => '$' + v.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
   const pctAbs = (v, d = 1) => Math.abs(v * 100).toFixed(d) + '%';
   const pctSigned = (v, d = 1) => (v >= 0 ? '+' : '−') + pctAbs(v, d);
-  const fmtDate = (t) => new Date(t).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' });
+  const fmtDate = (t) => new Date(t).toISOString().slice(0, 10).replace(/-/g, '/');
   const NS = 'http://www.w3.org/2000/svg';
   const svgEl = (name, attrs = {}, parent) => {
     const n = document.createElementNS(NS, name);
@@ -143,17 +143,17 @@
   }
 
   /* ---------- 5. the spoof stock chart ---------- */
-  const EVENTS = [
-    { d: '2024-09-02', icon: '🔔', tag: 'IPO', title: '玉桂芯片 rings the opening bell', text: 'Starting price $12.00. Guests: mostly clouds.' },
-    { d: '2025-02-18', icon: '🚀', tag: 'Launch', title: 'GPU CN-9000 goes on sale', text: 'Sold out in four minutes. The whole world wants one. 涨!' },
-    { d: '2025-08-05', icon: '🍥', tag: 'Rally', title: 'Cinnamon-cooled GPUs', text: 'Each roll in the break room adds one teraflop. Analysts call it “the vibes”.' },
-    { d: '2025-11-03', icon: '🤫', tag: 'Secret', title: 'The affair begins', text: 'Nobody knows yet. Later, insiders say a cat from the third floor was involved.' },
-    { d: '2026-01-20', icon: '🏔️', tag: 'Peak', title: 'All-time high', text: 'Worth more than most clouds. He forgets his keys on stage and the crowd laughs.' },
-    { d: '2026-01-21', icon: '💔', tag: 'Crash', title: '外遇 revealed', text: 'Leaked photos: him and a cat who is also a spy. A coworker, too. Worst day ever.' },
-    { d: '2026-03-09', icon: '🎙️', tag: 'Tell-all', title: 'The cat gives a podcast', text: '“He talked about cinnamon rolls the whole date.” Stock keeps falling 跌.' },
-    { d: '2026-06-01', icon: '📦', tag: 'Returns', title: 'Customers return their GPUs', text: 'Notes in the boxes: “We trusted you.” Salty, which he cannot stand.' },
-    { d: '2026-09-01', icon: '🗓️', tag: 'Oops', title: 'He forgets the shareholder meeting', text: '忘了开会, again. Shareholders waited three hours. The keys were in the cloud.' },
-    { d: '2026-11-13', icon: '💌', tag: 'Today', title: 'He posts: 玉桂狗征女朋友', text: 'The stock is still down, but traders whisper: “说不定就是你!”' },
+  const EVENTS = [ // no English: emoji, plus words that are in the blog text
+    { d: '2024-09-02', icon: '🔔', title: '🔔 🐶🏢', text: '💲12.00 · ☁️☁️☁️' },
+    { d: '2025-02-18', icon: '🚀', title: 'GPU 🎮🔥', text: '⏱️ 4 · 🛒💨 · 🌍 涨 📈' },
+    { d: '2025-08-05', icon: '🍥', title: '🍥❄️ GPU', text: '🍥 ➡️ ⚡ +1 · 📊✨' },
+    { d: '2025-11-03', icon: '🤫', title: '🤫 外遇', text: '🐱 🏢3️⃣ · 🤐' },
+    { d: '2026-01-20', icon: '🏔️', title: '🏔️ $486', text: '☁️👑 · 🎤🔑❓ · 😂' },
+    { d: '2026-01-21', icon: '💔', title: '💔 外遇!', text: '📸 🐶💞🐱🕵️ · 👔👥 · 📉 −23%' },
+    { d: '2026-03-09', icon: '🎙️', title: '🎙️🐱', text: '🍥🍥🍥💬 · 🍽️😒 · 跌 📉' },
+    { d: '2026-06-01', icon: '📦', title: '📦🎮↩️', text: '📝🥺 · 🧂😖' },
+    { d: '2026-09-01', icon: '🗓️', title: '🗓️ 忘了开会 😵', text: '👥⏳3 · 🔑☁️' },
+    { d: '2026-11-13', icon: '💌', title: '💌 玉桂狗征女朋友', text: '📉 · ❓💕 · 说不定就是你！' },
   ];
   const KEYFRAMES = [
     ['2024-09-02', 12], ['2024-12-02', 21], ['2025-02-17', 38], ['2025-02-18', 63], ['2025-06-02', 150], ['2025-08-05', 228],
@@ -212,23 +212,23 @@
   const refs = { anns: [], pins: [] };
 
   const phaseText = (i) => {
-    if (i >= N) return '🚀 If you apply (a made-up forecast)';
-    if (i === 0) return '🔔 IPO day';
-    if (i < affairIdx) return '▲ Rally 涨';
-    if (i < peakIdx) return '▲ Still rising… the affair is a secret 🤫';
-    if (i === peakIdx) return '🏔️ All-time high';
-    if (i === revealIdx) return '💔 外遇 revealed!';
-    return '▼ Falling 跌';
+    if (i >= N) return '🚀💌';
+    if (i === 0) return '🔔';
+    if (i < affairIdx) return '▲ 涨 📈';
+    if (i < peakIdx) return '▲ 🤫';
+    if (i === peakIdx) return '🏔️';
+    if (i === revealIdx) return '💔 外遇!';
+    return '▼ 跌 📉';
   };
   const moodOf = (i) => {
     const dd = 1 - P[i] / runMax[i];
-    if (i >= N) return ['🚀 Hopeful (made up)', dd];
-    if (i >= affairIdx && i < revealIdx) return ['😏 Suspiciously smug', dd];
-    if (dd < 0.05) return ['😍 Adored', dd];
-    if (dd < 0.35) return ['😬 Nervous', dd];
-    if (dd < 0.7) return ['😱 Panic', dd];
-    if (dd < 0.95) return ['💔 Heartbroken', dd];
-    return ['🥲 Looking for love', dd];
+    if (i >= N) return ['🚀', dd];
+    if (i >= affairIdx && i < revealIdx) return ['😏', dd];
+    if (dd < 0.05) return ['😍', dd];
+    if (dd < 0.35) return ['😬', dd];
+    if (dd < 0.7) return ['😱', dd];
+    if (dd < 0.95) return ['💔', dd];
+    return ['🥲', dd];
   };
 
   function build() {
@@ -243,9 +243,9 @@
     const base = ys(0);
     const pw = clamp(W * 0.085, 46, 78); // rider width
 
-    const t = svgEl('title', { id: 'chart-title' }, svg); t.textContent = 'CINN stock price, September 2024 to November 2026 (made up)';
+    const t = svgEl('title', { id: 'chart-title' }, svg); t.textContent = '玉桂芯片的股票（虚构）';
     const d = svgEl('desc', { id: 'chart-desc' }, svg);
-    d.textContent = `Made-up price of CINN. It starts at ${usd(P[0])} on ${fmtDate(days[0])}, climbs to an all-time high of ${usd(PEAK)} on ${fmtDate(days[peakIdx])}, drops ${pctAbs(revealDrop, 0)} the next day when the affair is revealed, and keeps falling to ${usd(LAST)} on ${fmtDate(days[N - 1])}, ${pctAbs(fromPeakNow, 0)} below the peak.`;
+    d.textContent = `虚构的股票图。从 ${usd(P[0])}（${fmtDate(days[0])}）涨到最高 ${usd(PEAK)}（${fmtDate(days[peakIdx])}），第二天大家发现他有过外遇，跌了 ${pctAbs(revealDrop, 0)}，后来股票就一直跌，到 ${usd(LAST)}（${fmtDate(days[N - 1])}），比最高点低了 ${pctAbs(fromPeakNow, 0)}。`;
 
     const defs = svgEl('defs', {}, svg);
     const clip = svgEl('clipPath', { id: 'clip-reveal' }, defs);
@@ -256,22 +256,21 @@
       svgEl('line', { class: 'grid', x1: M.l, x2: W - M.r, y1: ys(v), y2: ys(v) }, svg);
       const tx = svgEl('text', { class: 'axis-lbl', x: M.l - 8, y: ys(v) + 4, 'text-anchor': 'end' }, svg); tx.textContent = '$' + v;
     }
-    // x axis: a label every quarter (every half year on a phone); the year shows on the first one and on each January
-    const tickMonths = narrow ? [0, 6] : [0, 3, 6, 9]; let prevM = -1, firstTick = true;
+    // x axis: a label every quarter (every half year on a phone), as year/month
+    const tickMonths = narrow ? [0, 6] : [0, 3, 6, 9]; let prevM = -1;
     days.forEach((tm, i) => {
       if (i >= N) return;
       const dt = new Date(tm); const mo = dt.getUTCMonth();
       if (mo === prevM) return; prevM = mo;
       if (!tickMonths.includes(mo)) return;
-      const yr = mo === 0 || firstTick ? ' ’' + String(dt.getUTCFullYear()).slice(2) : ''; firstTick = false;
       const tx = svgEl('text', { class: 'axis-lbl', x: xs(i), y: H - 10, 'text-anchor': 'middle' }, svg);
-      tx.textContent = dt.toLocaleDateString('en-GB', { month: 'short', timeZone: 'UTC' }) + yr;
+      tx.textContent = `${dt.getUTCFullYear()}/${mo + 1}`;
     });
 
     // the affair (secret) band + "future" region
     const bx = xs(affairIdx), bw = xs(revealIdx) - xs(affairIdx);
     svgEl('rect', { class: 'band', x: bx, y: M.t, width: bw, height: base - M.t, rx: 6 }, svg);
-    const bl = svgEl('text', { class: 'band-lbl', transform: `translate(${bx + bw / 2 + 4} ${base - 12}) rotate(-90)` }, svg); bl.textContent = '外遇 · secret';
+    const bl = svgEl('text', { class: 'band-lbl', transform: `translate(${bx + bw / 2 + 4} ${base - 12}) rotate(-90)` }, svg); bl.textContent = '外遇 🤫';
     svgEl('rect', { x: xs(N - 1), y: M.t, width: W - M.r - xs(N - 1), height: base - M.t, fill: 'rgba(47,134,214,.045)', rx: 6 }, svg);
     refs.future = svgEl('text', { class: 'future-lbl', transform: `translate(${(xs(N - 1) + W - M.r) / 2 + 4} ${M.t + 52}) rotate(-90)`, 'text-anchor': 'end' }, svg);
     refs.future.textContent = '说不定就是你！'; refs.future.style.transition = 'opacity .4s';
@@ -302,18 +301,18 @@
     };
     label(revealIdx, (grp) => {
       const cxp = clamp(xs(peakIdx), 80, W - 80);
-      const a = svgEl('text', { class: 'ann', x: cxp, y: ys(PEAK) - 24, 'text-anchor': 'middle' }, grp); a.textContent = `All-time high ${usd(PEAK)}`;
-      const b = svgEl('text', { class: 'ann', x: cxp, y: ys(PEAK) - 9, 'text-anchor': 'middle' }, grp); b.textContent = `外遇 revealed ${pctSigned(revealDrop, 0)}`;
+      const a = svgEl('text', { class: 'ann', x: cxp, y: ys(PEAK) - 24, 'text-anchor': 'middle' }, grp); a.textContent = `🏔️ ${usd(PEAK)}`;
+      const b = svgEl('text', { class: 'ann', x: cxp, y: ys(PEAK) - 9, 'text-anchor': 'middle' }, grp); b.textContent = `💔 外遇 ${pctSigned(revealDrop, 0)}`;
     });
     const ri = Math.round(peakIdx * 0.45), fi = revealIdx + Math.round((N - 1 - revealIdx) * 0.3);
     if (!narrow) { // on a phone the key under the chart names the two colours instead
-      label(ri, (grp) => keyed(grp, xs(ri) + 6, ys(P[ri]) + 30, '#2f86d6', 'rising 涨', false));
-      label(fi, (grp) => keyed(grp, xs(fi) - 6, ys(P[fi]) + 30, '#d6456b', 'falling 跌', true));
+      label(ri, (grp) => keyed(grp, xs(ri) + 6, ys(P[ri]) + 30, '#2f86d6', '涨', false));
+      label(fi, (grp) => keyed(grp, xs(fi) - 6, ys(P[fi]) + 30, '#d6456b', '跌', true));
     }
     label(N - 1, (grp) => {
       const nx = narrow ? xs(N - 1) + 8 : xs(N - 1) - pw * 0.55 - 6, ny = ys(LAST) - (narrow ? 92 : 60); // phone: lift it above the Sept pin
-      const tx = svgEl('text', { class: 'ann', x: nx, y: ny, 'text-anchor': 'end' }, grp); tx.textContent = `now ${usd(LAST)}`;
-      const sub = svgEl('text', { class: 'ann-sub', x: nx, y: ny + 13, 'text-anchor': 'end' }, grp); sub.textContent = `${pctSigned(fromPeakNow, 0)} from peak`;
+      const tx = svgEl('text', { class: 'ann', x: nx, y: ny, 'text-anchor': 'end' }, grp); tx.textContent = `📍 ${usd(LAST)}`;
+      const sub = svgEl('text', { class: 'ann-sub', x: nx, y: ny + 13, 'text-anchor': 'end' }, grp); sub.textContent = `${pctSigned(fromPeakNow, 0)} 🏔️`;
     });
 
     // news pins
@@ -368,7 +367,7 @@
     chgEl.textContent = (chg >= 0 ? '▲ ' : '▼ ') + pctAbs(chg);
     chgEl.classList.toggle('neg', chg < 0);
     phaseEl.textContent = phaseText(i);
-    dateEl.textContent = fmtDate(days[i]) + (i >= N ? ' (made up)' : '');
+    dateEl.textContent = fmtDate(days[i]) + (i >= N ? ' 🚀' : '');
     const [mood, dd] = moodOf(i);
     ddEl.textContent = dd < 0.0005 ? '0.0%' : '−' + pctAbs(dd);
     moodEl.textContent = mood;
@@ -390,9 +389,9 @@
     const prev = i > 0 ? P[i - 1] : P[0];
     const dayChg = P[i] / prev - 1;
     tip.replaceChildren();
-    tip.append(h('div', 't-date', fmtDate(days[i]) + (i >= N ? ' · made-up forecast' : '')), h('div', 't-px', usd(P[i])));
-    const r1 = h('div', 't-row'); r1.append(h('i', 't-key' + (down ? ' down' : '')), h('span', '', `${pctSigned(dayChg)} on the day`)); tip.append(r1);
-    const r2 = h('div', 't-row'); r2.append(h('i', 't-key none'), h('span', '', `${pctSigned(P[i] / PEAK - 1)} vs all-time high`)); tip.append(r2);
+    tip.append(h('div', 't-date', fmtDate(days[i]) + (i >= N ? ' 🚀' : '')), h('div', 't-px', usd(P[i])));
+    const r1 = h('div', 't-row'); r1.append(h('i', 't-key' + (down ? ' down' : '')), h('span', '', `📅 ${pctSigned(dayChg)}`)); tip.append(r1);
+    const r2 = h('div', 't-row'); r2.append(h('i', 't-key none'), h('span', '', `🏔️ ${pctSigned(P[i] / PEAK - 1)}`)); tip.append(r2);
     const k = eventIdx.indexOf(i);
     if (k >= 0) tip.append(h('div', 't-ev', `${EVENTS[k].icon} ${EVENTS[k].title}`));
     tip.hidden = false;
@@ -408,7 +407,7 @@
   // news feed + data table
   const feedItems = EVENTS.map((e, k) => {
     const li = h('li'); const b = h('button', 'ev'); b.type = 'button';
-    const top = h('div', 'e-top'); top.append(h('span', '', `${e.icon} ${e.tag}`), h('span', '', fmtDate(days[eventIdx[k]])));
+    const top = h('div', 'e-top'); top.append(h('span', '', e.icon), h('span', '', fmtDate(days[eventIdx[k]])));
     b.append(top, h('div', 'e-title', e.title), h('p', 'e-body', e.text), h('div', 'e-top', usd(P[eventIdx[k]])));
     b.addEventListener('click', () => { seek(eventIdx[k]); });
     li.append(b); feed.append(li); return b;
@@ -420,7 +419,7 @@
   };
   (() => {
     const tbl = $('#data-table'); const head = tbl.createTHead().insertRow();
-    ['Month end', 'Close', 'Vs all-time high'].forEach((t) => head.append(Object.assign(document.createElement('th'), { textContent: t, scope: 'col' })));
+    ['📅', '💲', '🏔️'].forEach((t) => head.append(Object.assign(document.createElement('th'), { textContent: t, scope: 'col' })));
     const body = tbl.createTBody();
     for (let i = 0; i < N; i++) {
       if (i < N - 1 && new Date(days[i]).getUTCMonth() === new Date(days[i + 1]).getUTCMonth()) continue;
@@ -430,7 +429,7 @@
   })();
 
   // playback
-  const setPlayLabel = () => { playBtn.textContent = playing ? '⏸ Pause' : '▶ Play'; playBtn.setAttribute('aria-label', playing ? 'Pause' : 'Play'); };
+  const setPlayLabel = () => { playBtn.textContent = playing ? '⏸️' : '▶️'; playBtn.setAttribute('aria-label', playing ? '暂停' : '播放'); };
   const spawnPuff = (emoji) => {
     if (reduced || wrap.querySelectorAll('.puff').length > 22) return;
     const p = h('span', 'puff', emoji); const x = xs(cursor), y = ys(valueAt(cursor));
@@ -483,7 +482,6 @@
   whatifBtn.addEventListener('click', () => {
     forecastOn = !forecastOn;
     whatifBtn.setAttribute('aria-pressed', forecastOn);
-    whatifBtn.textContent = forecastOn ? '💌 If you apply… (on)' : '💌 If you apply…';
     refs.fc.style.display = forecastOn ? '' : 'none';
     if (forecastOn) { if (cursor >= N - 1 - 0.01) { cursor = N - 1; play(); } }
     else { cursor = Math.min(cursor, N - 1); pause(); }
@@ -524,18 +522,18 @@
   (() => {
     const spots = $$('#keys .spot'), msg = $('#keys-msg'), foundEl = $('#keys-found'), lostEl = $('#keys-lost');
     let keyAt = Math.floor(Math.random() * spots.length), found = 0, lost = 1, locked = false;
-    const hints = ['Not here. Only a sock. 🧦', 'Nope. He checked there already.', 'Just crumbs. Cinnamon ones.', 'Empty! Where did he put them?', 'Cold. Very cold.', 'Wrong place. He is panicking a little.'];
-    const bigMiss = ['Warm… 🔥', 'Hot! 🔥🔥'];
+    const hints = ['🧦❌', '🙅🔍', '🍥✨🧹', '🕳️❓', '🥶', '😰🔑❓'];
+    const bigMiss = ['🔥', '🔥🔥'];
     spots.forEach((b, i) => b.addEventListener('click', () => {
       if (locked) return;
       const ico = $('span', b); const orig = ico.textContent;
       if (i === keyAt) {
         locked = true; found++; foundEl.textContent = found; b.classList.add('hit'); ico.textContent = '🔑'; burstAt(b, 22);
-        msg.textContent = '🔑 Found them! He is so happy… and puts them down.';
+        msg.textContent = '🔑🎉 😊 ➡️ 🖐️🔑';
         setTimeout(() => {
           b.classList.remove('hit'); ico.textContent = orig;
           keyAt = (keyAt + 1 + Math.floor(Math.random() * (spots.length - 1))) % spots.length; lost++; lostEl.textContent = lost; locked = false;
-          msg.textContent = 'Wait… he lost them again. 😅 Where now?';
+          msg.textContent = '😅 🔑❌ ➡️ ❓';
         }, 1700);
       } else {
         restart(b, 'miss'); setTimeout(() => b.classList.remove('miss'), 700);
@@ -546,7 +544,7 @@
   // rolls
   (() => {
     const rolls = $$('#rolls .roll'), row = $('#rolls .roll-row'), msg = $('#rolls-msg');
-    const texts = ['0 of 3 eaten.', '1 of 3. Mmm. Two to go.', '2 of 3. One more!', '3 of 3. Quota reached ✔ No matter how busy he is.'];
+    const texts = ['0/3 🍥', '1/3 😋', '2/3 😋😋', '3/3 ✅ 无论多忙 🏃'];
     const count = () => rolls.filter((r) => r.classList.contains('eaten')).length;
     const crumbs = (b) => {
       const rr = b.getBoundingClientRect(), pr = row.getBoundingClientRect();
@@ -565,7 +563,7 @@
   // fish vs rolls
   (() => {
     const btns = $$('#taste .seg button'), msg = $('#order-msg');
-    const out = { rolls: 'Same table, same plate. 💕', fish: '各点各的吧! (You order yours, he orders his.) 🐟🍥' };
+    const out = { rolls: '🍥🍥 💕', fish: '各点各的吧 🐟 | 🍥' };
     btns.forEach((b) => b.addEventListener('click', () => {
       btns.forEach((o) => o.setAttribute('aria-pressed', o === b)); msg.textContent = out[b.dataset.order];
     }));
@@ -573,13 +571,13 @@
   // homework
   (() => {
     const r = $('#diff'), val = $('#diff-val'), msg = $('#diff-msg');
-    const say = (v) => (v <= 3 ? '😎 Easy. He has a GPU.' : v <= 6 ? '😎 Fine. He brought rolls.' : v <= 9 ? '😎 Hard? He is smiling.' : '😎 不管功课多难都不怕。');
+    const say = (v) => (v <= 3 ? '😎 🎮' : v <= 6 ? '😎 🍥' : v <= 9 ? '😎 😁' : '😎 不管功课多难都不怕。');
     r.addEventListener('input', () => { val.textContent = r.value; msg.textContent = say(Number(r.value)); });
   })();
   // terminal typewriter
   (() => {
     const out = $('#term-out'), box = $('#terminal');
-    const script = '$ gpu --status\nCN-9000 ........ sold out 🔥\n$ apply --degree "computer science master\'s"\nloading ████████░░ 80%\n$ homework --difficulty max\nfear = 0   # 不管功课多难都不怕\n$ rolls --today\n3 / 3 ✔   # 非吃三个不可\n';
+    const script = '$ GPU 🎮\n🔥🔥🔥 ✅\n$ 🎓 ➡️ 💻\n████████░░ 80%\n$ 📚🔥🔥🔥\n😨 = 0   # 不管功课多难都不怕\n$ 🍥\n3 / 3 ✔   # 非吃三个不可\n';
     let ran = false;
     const type = () => {
       if (reduced) { out.textContent = script; return; }
@@ -593,15 +591,15 @@
   (() => {
     const frame2 = $('#fit-frame'), btn = $('#fit-btn'), cap = $('#fit-cap'), count = $('#fit-count');
     const outfits = [
-      ['a red hoodie', 160], ['a green kimono', -80], ['a yellow raincoat', 60], ['a $4,000 designer tux', 200], ['pink pyjamas', 110], ['a tiny pirate costume', -140],
+      ['🧥', 160], ['🥋', -80], ['☔', 60], ['🤵💰', 200], ['🛏️', 110], ['🏴‍☠️', -140],
     ];
     let n = 0, busy = false;
     btn.addEventListener('click', () => {
       if (busy) return; busy = true;
       const [name, hue] = outfits[n % outfits.length]; n++;
-      frame2.style.setProperty('--h', hue + 'deg'); frame2.classList.add('rejecting'); cap.textContent = `He tries on ${name}…`;
+      frame2.style.setProperty('--h', hue + 'deg'); frame2.classList.add('rejecting'); cap.textContent = `👗 ${name} ❓`;
       setTimeout(() => {
-        restart(frame2, 'shake'); count.textContent = n; cap.textContent = 'NOPE. Blue suit + blue bow tie. Always. 💙';
+        restart(frame2, 'shake'); count.textContent = n; cap.textContent = '🙅 ➡️ 👔💙🎀';
         burstAt(frame2, 18);
       }, 900);
       setTimeout(() => { frame2.classList.remove('rejecting'); busy = false; }, 1900);
@@ -612,8 +610,7 @@
   (() => {
     const sets = $$('#checker fieldset'), verdict = $('#verdict');
     const bad = {
-      spy: 'Disqualified: spies are not allowed. 🕵️', coworker: 'Disqualified: no coworkers. HR was very clear.',
-      cat: 'Disqualified: no cats. (The last one was a spy.) 🐱', rolls: 'Almost! You must love cinnamon rolls MORE than he does.', laugh: 'He told a joke. You did not laugh. Awkward.',
+      spy: '🕵️🚫', coworker: '👔👥🚫', cat: '🐱🚫 (🕵️🐱)', rolls: '🍥💕 ⬆️❗', laugh: '🎤 😐 ❌',
     };
     let state = '';
     const run = () => {
@@ -623,8 +620,8 @@
         if (!v) return; answered++;
         if (v.value === f.dataset.ok) f.classList.add('good'); else { f.classList.add('bad'); firstBad = firstBad || f.dataset.q; }
       });
-      let next = 'idle', text = answered ? `${answered} of 5 answered…` : 'Answer all five questions.';
-      if (firstBad) { next = 'bad'; text = bad[firstBad]; } else if (answered === sets.length) { next = 'ok'; text = '✅ Application approved! Now go to Contact and send him a message. 💌'; }
+      let next = 'idle', text = answered ? `${answered}/5 ✍️` : '❓❓❓❓❓';
+      if (firstBad) { next = 'bad'; text = bad[firstBad]; } else if (answered === sets.length) { next = 'ok'; text = '🎉✅ ➡️ 💌'; }
       verdict.textContent = text;
       if (next !== state) { verdict.dataset.state = 'idle'; void verdict.offsetWidth; verdict.dataset.state = next; if (next === 'ok') burstAt(verdict, 48); }
       state = next;
@@ -632,20 +629,20 @@
     $('#checker').addEventListener('change', run);
   })();
   (() => {
-    const jokes = [
-      'How does Cinnamoroll fix a bug? He rolls it back.',
-      'Why did the GPU cross the cloud? To get to the other side-load.',
-      'There are 10 kinds of people: those who love cinnamon rolls, and those who are wrong.',
-      'Where does he keep his keys? In the cloud. He still cannot find them.',
-      'Why was the stock so sad? It could not stop falling for him.',
-      'I would tell you a UDP joke, but you might not get it.',
+    const jokes = [ // emoji puzzles instead of English puns
+      '🐛 ➡️ 🐶🍥 ➡️ ↩️',
+      '🔑❓ ➡️ ☁️ ➡️ 🤷',
+      '📈🚀 ➡️ 🐱 ➡️ 📉💔',
+      '🍥😍 ✅ · 🍥😒 ❌',
+      '🧂😖 ➡️ 🍥😍',
+      '🐶💻 💕 🍥 ➡️ 🔁♾️',
     ];
     const text = $('#joke-text'), laugh = $('#laugh'), next = $('#joke-next'), count = $('#laugh-count'), msg = $('#laugh-msg');
     let i = 0, n = 0;
-    next.addEventListener('click', () => { i = (i + 1) % jokes.length; text.textContent = `“${jokes[i]}”`; restart(text, 'bump'); msg.textContent = 'He is watching your face…'; });
+    next.addEventListener('click', () => { i = (i + 1) % jokes.length; text.textContent = jokes[i]; restart(text, 'bump'); msg.textContent = '👀'; });
     laugh.addEventListener('click', () => {
       n++; count.textContent = n; burstAt(laugh, 18); restart(text, 'bump');
-      msg.textContent = n < 3 ? 'He noticed. He is delighted. 😊' : n < 8 ? 'He is laughing at his own joke now. 😆' : 'He is already planning the wedding. 💒';
+      msg.textContent = n < 3 ? '😊✨' : n < 8 ? '🤣🤣' : '💒💍';
     });
   })();
 
@@ -654,11 +651,11 @@
     const form = $('#contact-form'), msgBox = $('#c-msg'), status = $('#c-status'), plane = $('#plane-fly');
     form.addEventListener('submit', (e) => {
       e.preventDefault();
-      if (!msgBox.value.trim()) { restart(msgBox, 'err'); status.textContent = 'He needs at least one word. 💬'; msgBox.focus(); return; }
+      if (!msgBox.value.trim()) { restart(msgBox, 'err'); status.textContent = '💬❓'; msgBox.focus(); return; }
       const btn = $('button[type="submit"]', form); const r = btn.getBoundingClientRect();
-      status.textContent = 'Paper plane in the air… ✈️';
+      status.textContent = '✈️☁️';
       const done = () => {
-        status.textContent = '✅ Delivered. He replied: “I am already waiting for you!” 💙 (Demo only: nothing was actually sent.)';
+        status.textContent = '✅📨 🐶💬 他已经在等你了！💙 (📨🚫)';
         burstAt(btn, 50); msgBox.value = '';
       };
       if (reduced) { done(); return; }
@@ -676,15 +673,15 @@
 
   /* ---------- 9. ticker tape + reading tools ---------- */
   (() => {
-    const items = [
-      ['CINN', usd(LAST), 'down', `▼ ${pctAbs(fromPeakNow)} from peak`],
-      ['ROLL', '$3.00/day', 'up', '▲ 300% (cinnamon-roll futures)'],
-      ['KEYS', 'lost', 'down', '▼ lost again'],
-      ['CAT', '???', 'up', '▲ 420% (suspicious)'],
-      ['GPU', 'CN-9000 resale', 'down', '▼ 91%'],
-      ['JOKE', 'dad-joke bonds', 'up', '▲ 12%'],
-      ['SUIT', 'blue', 'up', '▲ 0.0% (unchanged forever)'],
-      ['CLOUD', 'café REIT', 'up', '▲ 2%'],
+    const items = [ // [symbol, price, direction, change]
+      ['🐶', usd(LAST), 'down', `▼ ${pctAbs(fromPeakNow)} 🏔️`],
+      ['🍥', '3/📅', 'up', '▲ 300%'],
+      ['🔑', '❓', 'down', '▼ 🔁'],
+      ['🐱', '🕵️', 'up', '▲ 420%'],
+      ['🎮', 'GPU', 'down', '▼ 91%'],
+      ['😆', '🎤', 'up', '▲ 12%'],
+      ['👔', '💙', 'up', '▲ 0.0%'],
+      ['☁️', '🏢', 'up', '▲ 2%'],
     ];
     const tape = $('#tape');
     const add = () => items.forEach(([sym, px, dir, chg]) => {
