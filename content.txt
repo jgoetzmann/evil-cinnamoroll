@@ -40,7 +40,7 @@
 # ---------------------------------------------------------------------
 
 # top of the page (hero)
-blog_intro = 玉桂狗，男，是一只小白狗。他是在云上的大学毕业的，现在是玉桂芯片[xīnpiàn, chip]公司的老板，很会挣钱。他们公司的GPU，全世界的人都想买，股票[gǔpiào, stock]先涨[zhǎng, to rise]得很高。{后来|hòulái}大家发现，{原来|yuánlái}他有过外遇[wàiyù, affair]，股票{就一直|jiù yìzhí}跌[diē, to fall]。现在他想找新的女朋友，{说不定|shuōbudìng}就是你！
+blog_intro = 玉桂狗，男，是一只小白狗。他从云上大学毕业，现在是玉桂芯片[xīnpiàn, chip]公司的老板，很会挣钱。他们公司的GPU，全世界的人都想买，股票[gǔpiào, stock]先涨[zhǎng, to rise]得很高。{后来|hòulái}大家发现，{原来|yuánlái}他有过外遇[wàiyù, affair]，股票{就一直|jiù yìzhí}跌[diē, to fall]。现在他想找新的女朋友，{说不定|shuōbudìng}就是你！
 
 # 😄 personality and hobbies
 blog_about = 他是个电脑迷，很开朗，爱开玩笑。就是有点儿丢三拉四，{一会儿|yíhuìr … yíhuìr …}找不到钥匙，{一会儿|yíhuìr … yíhuìr …}忘了开会。
@@ -49,10 +49,10 @@ blog_about = 他是个电脑迷，很开朗，爱开玩笑。就是有点儿丢�
 blog_food = {在吃上|zài … shàng}，他最爱肉桂卷，又香又甜。{无论|wúlùn … dōu …}多忙，他每天{都|wúlùn … dōu …}{非|fēi … bùkě}吃三个{不可|fēi … bùkě}。他的口味不清淡，可是不喜欢咸的。{要是|yàoshi}你只吃清蒸鱼，你们就{各点各的|gè … gè de}吧。
 
 # 🎓 school plans
-blog_study = 他大学学的是电机工程[diànjī gōngchéng, electrical engineering]，整天跟电脑{打交道|dǎ jiāodao}，一天没有电脑{就受不了|jiù shòubuliǎo}。他{打算|dǎsuan}再申请一个电脑硕士[shuòshì, master's degree]，{希望|xīwàng}你也在选几门电脑课，{不管|bùguǎn … dōu …}功课多难{都|bùguǎn … dōu …}不怕。
+blog_study = 他大学学的是电机工程[diànjī gōngchéng, electrical engineering]，整天跟电脑{打交道|dǎ jiāodao}，一天没有电脑{就受不了|jiù shòubuliǎo}。他{打算|dǎsuan}再申请一个电脑硕士[shuòshì, master's degree]，希望你也再选几门电脑课，{不管|bùguǎn … dōu …}功课多难{都|bùguǎn … dōu …}不怕。
 
 # 🛍️ shopping standards
-blog_style = {在购物上|zài … shàng}，他只有一个样子：蓝色的西装[xīzhuāng, suit]和蓝色的领结。他{不在乎|búzàihu}名牌，只在乎质量。便宜的衣服{便宜是便宜|piányi shì piányi … kěshì …}，{可是|piányi shì piányi … kěshì …}穿一两次就坏了。
+blog_style = 在购物标准上，他只喜欢一种样子：蓝色的西装[xīzhuāng, suit]和蓝色的领结。他{不在乎|búzàihu}名牌，只在乎质量。便宜的衣服{便宜是便宜|piányi shì piányi … kěshì …}，{可是|piányi shì piányi … kěshì …}穿一两次就坏了。
 
 # 📝 girlfriend standards
 blog_rules = 他的标准是：你不能是间谍[jiàndié, spy]，不能是他的同事，也不能是猫。另外，你得{比他还|bǐ … hái …}爱吃肉桂卷，还要听得懂他的笑话[xiàohua, joke]：他{一|yī … jiù …}开玩笑，你{就|yī … jiù …}笑。
@@ -74,7 +74,7 @@ nav_label = 导航
 nav_stock = 玉桂芯片的股票
 nav_about = 性格和爱好
 nav_food = 吃饭的习惯
-nav_study = 学校的打算
+nav_study = 学习的打算
 nav_style = 购物标准
 nav_rules = 女朋友的标准
 nav_contact = 发送爱的邮件
