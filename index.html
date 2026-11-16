@@ -27,7 +27,7 @@
   </symbol>
 </svg>
 
-<a class="skip" href="#main" title="跳到内容">⏩</a>
+<a class="skip" href="#main" title="{{skip_link}}">⏩</a>
 <div class="scroll-progress" aria-hidden="true"><i></i></div>
 <div class="sky" id="sky" aria-hidden="true">
   <div class="cloud c1" data-speed="0.10"></div>
@@ -41,21 +41,21 @@
 <div class="tape" aria-hidden="true"><div class="tape-track" id="tape"></div></div>
 
 <header class="nav" id="nav">
-  <a class="brand" href="#top"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="#roll"/></svg><span>玉桂狗</span></a>
-  <nav aria-label="导航">
-    <a href="#stock" data-nav="stock" title="玉桂芯片的股票">📈</a>
-    <a href="#about" data-nav="about" title="性格和爱好">😄</a>
-    <a href="#food" data-nav="food" title="吃饭的习惯">🍥</a>
-    <a href="#study" data-nav="study" title="学校的打算">🎓</a>
-    <a href="#style" data-nav="style" title="购物标准">🛍️</a>
-    <a href="#rules" data-nav="rules" title="女朋友的标准">📝</a>
-    <a href="#contact" data-nav="contact" class="nav-cta" title="发送爱的邮件">💌</a>
+  <a class="brand" href="#top"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="#roll"/></svg><span>{{brand}}</span></a>
+  <nav aria-label="{{nav_label}}">
+    <a href="#stock" data-nav="stock" title="{{nav_stock}}">📈</a>
+    <a href="#about" data-nav="about" title="{{nav_about}}">😄</a>
+    <a href="#food" data-nav="food" title="{{nav_food}}">🍥</a>
+    <a href="#study" data-nav="study" title="{{nav_study}}">🎓</a>
+    <a href="#style" data-nav="style" title="{{nav_style}}">🛍️</a>
+    <a href="#rules" data-nav="rules" title="{{nav_rules}}">📝</a>
+    <a href="#contact" data-nav="contact" class="nav-cta" title="{{nav_contact}}">💌</a>
   </nav>
 </header>
 
-<div class="tools" role="group" aria-label="阅读工具">
-  <button type="button" id="tool-gloss" aria-pressed="true" title="拼音">👁️</button>
-  <button type="button" id="tool-grammar" aria-pressed="false" title="语法">🖍️</button>
+<div class="tools" role="group" aria-label="{{tools_label}}">
+  <button type="button" id="tool-gloss" aria-pressed="true" title="{{tool_pinyin}}">👁️</button>
+  <button type="button" id="tool-grammar" aria-pressed="false" title="{{tool_grammar}}">🖍️</button>
 </div>
 
 <main id="main">
@@ -65,22 +65,22 @@
     <div class="wrap hero-grid">
       <div class="hero-text">
         <p class="eyebrow" aria-hidden="true">🀄📚 💕🔍</p>
-        <h1 id="title">玉桂狗征女朋友</h1>
+        <h1 id="title">{{hero_title}}</h1>
         <p class="subtitle" aria-hidden="true">🐶💙 ➡️ 🔍 👧💕</p>
 
         <div class="bubble reveal">
-          <p class="zh">玉桂狗，男，是一只小白狗。他是在云上的大学毕业的，现在是玉桂芯片<span class="gloss">(xīnpiàn, chip)</span>公司的老板，很会挣钱。他们公司的GPU，全世界的人都想买，股票<span class="gloss">(gǔpiào, stock)</span>先涨<span class="gloss">(zhǎng, to rise)</span>得很高。<mark class="g" title="hòulái">后来</mark>大家发现，<mark class="g" title="yuánlái">原来</mark>他有过外遇<span class="gloss">(wàiyù, affair)</span>，股票<mark class="g" title="jiù yìzhí">就一直</mark>跌<span class="gloss">(diē, to fall)</span>。现在他想找新的女朋友，<mark class="g" title="shuōbudìng">说不定</mark>就是你！</p>
+          <p class="zh">{{blog_intro}}</p>
         </div>
 
         <div class="hero-cta reveal">
-          <a class="btn big" href="#stock" title="玉桂芯片的股票">📉💔</a>
-          <a class="btn big ghost" href="#contact" title="发送爱的邮件">💌💙</a>
+          <a class="btn big" href="#stock" title="{{hero_btn_stock}}">📉💔</a>
+          <a class="btn big ghost" href="#contact" title="{{hero_btn_contact}}">💌💙</a>
         </div>
       </div>
 
       <div class="hero-photo">
         <figure class="polaroid tilt-r" id="hero-polaroid">
-          <img src="images/suit.webp" width="1200" height="1009" alt="穿蓝色西装、打蓝色领结的玉桂狗，站在满是白星星的蓝墙前">
+          <img src="images/suit.webp" width="1200" height="1009" alt="{{hero_photo_alt}}">
           <figcaption>👔💙🎀</figcaption>
         </figure>
         <span class="float f-a" aria-hidden="true">💙</span>
@@ -89,7 +89,7 @@
         <span class="float f-d" aria-hidden="true">💗</span>
       </div>
     </div>
-    <a class="scroll-cue" href="#stock" aria-label="往下"><span></span></a>
+    <a class="scroll-cue" href="#stock" aria-label="{{scroll_down}}"><span></span></a>
   </section>
 
   <!-- ===================== STOCK CHART ===================== -->
@@ -97,54 +97,54 @@
     <div class="wrap">
       <header class="sec-head reveal">
         <p class="eyebrow" aria-hidden="true">📰🎭</p>
-        <h2 id="stock-h"><span class="ticker-pill">🐶</span> 玉桂芯片的股票</h2>
-        <p class="lede"><span>涨 📈</span> ➡️ <span>外遇 💔</span> ➡️ <span>跌 📉</span><span class="how" aria-hidden="true">▶️ · 👆 · 🎚️ · 📍</span></p>
+        <h2 id="stock-h"><span class="ticker-pill">🐶</span> {{stock_heading}}</h2>
+        <p class="lede"><span>{{stock_lede_up}}</span> ➡️ <span>{{stock_lede_affair}}</span> ➡️ <span>{{stock_lede_down}}</span><span class="how" aria-hidden="true">▶️ · 👆 · 🎚️ · 📍</span></p>
       </header>
 
-      <article class="chart-card reveal" id="chart-card" aria-label="玉桂芯片的股票图（虚构）">
+      <article class="chart-card reveal" id="chart-card" aria-label="{{chart_label}}">
         <div class="chart-top">
           <div class="hero-price">
-            <span class="hp-label" title="收盘价" aria-hidden="true">🐶 💲</span>
+            <span class="hp-label" title="{{stat_close}}" aria-hidden="true">🐶 💲</span>
             <output class="hp-value" id="px" aria-live="off">$12.00</output>
             <span class="hp-row"><span class="chg" id="chg">▲ 0.0%</span><span class="phase" id="phase">🔔</span></span>
           </div>
           <dl class="stats">
-            <div class="stat"><dt title="日期">📅</dt><dd id="st-date">—</dd></div>
-            <div class="stat"><dt title="离最高点">🏔️↘️</dt><dd id="st-dd">0.0%</dd></div>
-            <div class="stat mood"><dt title="心情">🎭</dt><dd><span id="st-mood">😍</span>
-              <span class="meter slim" role="meter" aria-label="离最高点跌了多少" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="mood-meter"><i id="mood-fill"></i></span></dd></div>
+            <div class="stat"><dt title="{{stat_date}}">📅</dt><dd id="st-date">—</dd></div>
+            <div class="stat"><dt title="{{stat_drop}}">🏔️↘️</dt><dd id="st-dd">0.0%</dd></div>
+            <div class="stat mood"><dt title="{{stat_mood}}">🎭</dt><dd><span id="st-mood">😍</span>
+              <span class="meter slim" role="meter" aria-label="{{stat_mood_meter}}" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="mood-meter"><i id="mood-fill"></i></span></dd></div>
           </dl>
         </div>
 
         <div class="chart-wrap" id="chart-wrap">
           <svg id="chart" role="img" aria-labelledby="chart-title chart-desc"></svg>
           <div class="tip" id="tip" hidden></div>
-          <div class="banner" id="banner" aria-hidden="true">💔 外遇!</div>
+          <div class="banner" id="banner" aria-hidden="true">{{banner_affair}}</div>
         </div>
 
         <div class="controls">
-          <button type="button" class="btn small" id="play" aria-label="暂停">⏸️</button>
-          <button type="button" class="btn small ghost" id="replay" aria-label="重播">🔁</button>
-          <label class="scrub"><span class="sr-only">时间</span>
+          <button type="button" class="btn small" id="play" aria-label="{{btn_pause}}">⏸️</button>
+          <button type="button" class="btn small ghost" id="replay" aria-label="{{btn_replay}}">🔁</button>
+          <label class="scrub"><span class="sr-only">{{scrub_label}}</span>
             <input type="range" id="scrub" min="0" max="1" value="0" step="1">
           </label>
-          <button type="button" class="btn small whatif" id="whatif" aria-pressed="false" aria-label="如果你联系他">💌🚀</button>
+          <button type="button" class="btn small whatif" id="whatif" aria-pressed="false" aria-label="{{btn_whatif}}">💌🚀</button>
         </div>
 
         <p class="key" aria-hidden="true">
-          <span><i class="k-line up"></i> 涨 📈</span>
-          <span><i class="k-line down"></i> 跌 📉</span>
-          <span><i class="k-band"></i> 外遇 🤫</span>
+          <span><i class="k-line up"></i> {{key_up}}</span>
+          <span><i class="k-line down"></i> {{key_down}}</span>
+          <span><i class="k-band"></i> {{key_affair}}</span>
           <span><i class="k-dot"></i> 📍</span>
           <span><i class="k-line fc"></i> 🚀❓</span>
         </p>
       </article>
 
-      <ol class="feed reveal" id="feed" aria-label="新闻"></ol>
+      <ol class="feed reveal" id="feed" aria-label="{{news_label}}"></ol>
 
       <details class="table-view reveal">
-        <summary title="表格">📋</summary>
-        <div class="table-scroll"><table id="data-table"><caption class="sr-only">每月月末的收盘价（虚构）</caption></table></div>
+        <summary title="{{table_toggle}}">📋</summary>
+        <div class="table-scroll"><table id="data-table"><caption class="sr-only">{{table_caption}}</caption></table></div>
       </details>
       <p class="fine reveal" aria-hidden="true">🎭 ≠ 💼 · 🚫📈💲</p>
     </div>
@@ -154,21 +154,21 @@
   <section class="section" id="about" aria-labelledby="about-h">
     <div class="wrap two">
       <div class="col">
-        <header class="sec-head reveal"><p class="eyebrow" aria-hidden="true">🎭💻</p><h2 id="about-h">😄 性格和爱好</h2></header>
+        <header class="sec-head reveal"><p class="eyebrow" aria-hidden="true">🎭💻</p><h2 id="about-h">{{head_about}}</h2></header>
         <div class="card text reveal">
-          <p class="zh">他是个电脑迷，很开朗，爱开玩笑。就是有点儿丢三拉四，<mark class="g" title="yíhuìr … yíhuìr …">一会儿</mark>找不到钥匙，<mark class="g" title="yíhuìr … yíhuìr …">一会儿</mark>忘了开会。</p>
+          <p class="zh">{{blog_about}}</p>
         </div>
 
         <div class="card game reveal" id="keys">
           <h3>🔑❓</h3>
           <p class="small" aria-hidden="true">😵🔑 👆</p>
-          <div class="spots" role="group" aria-label="藏钥匙的地方">
-            <button type="button" class="spot" data-spot="0" aria-label="沙发"><span>🛋️</span></button>
-            <button type="button" class="spot" data-spot="1" aria-label="口袋"><span>👖</span></button>
-            <button type="button" class="spot" data-spot="2" aria-label="云"><span>☁️</span></button>
-            <button type="button" class="spot" data-spot="3" aria-label="电脑包"><span>💻</span></button>
-            <button type="button" class="spot" data-spot="4" aria-label="盒子"><span>📦</span></button>
-            <button type="button" class="spot" data-spot="5" aria-label="花"><span>🪴</span></button>
+          <div class="spots" role="group" aria-label="{{spots_label}}">
+            <button type="button" class="spot" data-spot="0" aria-label="{{spot_sofa}}"><span>🛋️</span></button>
+            <button type="button" class="spot" data-spot="1" aria-label="{{spot_pocket}}"><span>👖</span></button>
+            <button type="button" class="spot" data-spot="2" aria-label="{{spot_cloud}}"><span>☁️</span></button>
+            <button type="button" class="spot" data-spot="3" aria-label="{{spot_bag}}"><span>💻</span></button>
+            <button type="button" class="spot" data-spot="4" aria-label="{{spot_box}}"><span>📦</span></button>
+            <button type="button" class="spot" data-spot="5" aria-label="{{spot_plant}}"><span>🪴</span></button>
           </div>
           <div class="say"><img class="face" src="images/face-plush.webp" width="176" height="176" alt=""><p class="game-msg" id="keys-msg" role="status">❓</p></div>
           <p class="scoreline" aria-hidden="true">🔑✅ <b id="keys-found">0</b> · 🔑❌ <b id="keys-lost">1</b></p>
@@ -177,11 +177,11 @@
 
       <div class="col photos">
         <figure class="polaroid tilt-l reveal">
-          <img src="images/plush-laptop.webp" width="422" height="396" loading="lazy" decoding="async" alt="一个白色的玉桂狗大玩偶当手托，有人在银色电脑上打字">
+          <img src="images/plush-laptop.webp" width="422" height="396" loading="lazy" decoding="async" alt="{{about_photo_1_alt}}">
           <figcaption>⌨️💻🏠</figcaption>
         </figure>
         <figure class="polaroid tilt-r reveal">
-          <img src="images/laughing.webp" width="1400" height="788" loading="lazy" decoding="async" alt="闭着眼睛笑的玉桂狗，脸红红的">
+          <img src="images/laughing.webp" width="1400" height="788" loading="lazy" decoding="async" alt="{{about_photo_2_alt}}">
           <figcaption>😄😂🎤</figcaption>
         </figure>
       </div>
@@ -193,48 +193,48 @@
     <div class="wrap two flip">
       <div class="col photos collage">
         <figure class="polaroid tilt-l reveal">
-          <img src="images/hobby-cinnamon-roll.webp" width="960" height="723" loading="lazy" decoding="async" alt="白盘子里的一个肉桂卷，旁边有一小杯咖啡">
+          <img src="images/hobby-cinnamon-roll.webp" width="960" height="723" loading="lazy" decoding="async" alt="{{food_photo_1_alt}}">
           <figcaption>🍥 1/3</figcaption>
         </figure>
         <figure class="polaroid tilt-r reveal">
-          <img src="images/teacup.webp" width="600" height="400" loading="lazy" decoding="async" alt="坐在蓝色大茶杯里、手里拿着粉红色肉桂卷的玉桂狗，周围有爱心">
+          <img src="images/teacup.webp" width="600" height="400" loading="lazy" decoding="async" alt="{{food_photo_2_alt}}">
           <figcaption>☕🍥💕</figcaption>
         </figure>
         <figure class="polaroid tilt-l small reveal">
-          <img src="images/roll-eating.webp" width="676" height="681" loading="lazy" decoding="async" alt="闭着眼睛开心地吃肉桂卷的玉桂狗">
+          <img src="images/roll-eating.webp" width="676" height="681" loading="lazy" decoding="async" alt="{{food_photo_3_alt}}">
           <figcaption>😋🍥</figcaption>
         </figure>
       </div>
 
       <div class="col">
-        <header class="sec-head reveal"><p class="eyebrow" aria-hidden="true">🍽️</p><h2 id="food-h">🍥 吃饭的习惯</h2></header>
+        <header class="sec-head reveal"><p class="eyebrow" aria-hidden="true">🍽️</p><h2 id="food-h">{{head_food}}</h2></header>
         <div class="card text reveal">
-          <p class="zh"><mark class="g" title="zài … shàng">在吃上</mark>，他最爱肉桂卷，又香又甜。<mark class="g" title="wúlùn … dōu …">无论</mark>多忙，他每天<mark class="g" title="wúlùn … dōu …">都</mark><mark class="g" title="fēi … bùkě">非</mark>吃三个<mark class="g" title="fēi … bùkě">不可</mark>。他的口味不清淡，可是不喜欢咸的。<mark class="g" title="yàoshi">要是</mark>你只吃清蒸鱼，你们就<mark class="g" title="gè … gè de">各点各的</mark>吧。</p>
+          <p class="zh">{{blog_food}}</p>
         </div>
 
         <div class="card game reveal" id="rolls">
           <h3>🍥×3 📅</h3>
           <p class="small" aria-hidden="true">👆🍥😋</p>
-          <div class="roll-row" role="group" aria-label="三个肉桂卷">
-            <button type="button" class="roll" aria-label="吃第一个肉桂卷"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="#roll"/></svg></button>
-            <button type="button" class="roll" aria-label="吃第二个肉桂卷"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="#roll"/></svg></button>
-            <button type="button" class="roll" aria-label="吃第三个肉桂卷"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="#roll"/></svg></button>
+          <div class="roll-row" role="group" aria-label="{{rolls_label}}">
+            <button type="button" class="roll" aria-label="{{roll_1}}"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="#roll"/></svg></button>
+            <button type="button" class="roll" aria-label="{{roll_2}}"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="#roll"/></svg></button>
+            <button type="button" class="roll" aria-label="{{roll_3}}"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="#roll"/></svg></button>
           </div>
           <div class="say"><img class="face" src="images/face-eat.webp" width="176" height="176" alt=""><p class="game-msg" id="rolls-msg" role="status">0/3 🍥</p></div>
-          <button type="button" class="btn small ghost" id="rolls-reset" aria-label="新的一天">☀️🔁</button>
+          <button type="button" class="btn small ghost" id="rolls-reset" aria-label="{{rolls_reset}}">☀️🔁</button>
         </div>
 
         <div class="card reveal" id="taste">
           <h3>👅</h3>
-          <div class="meter-row"><span class="lbl" title="甜">🍬</span><span class="meter" role="meter" aria-valuemin="0" aria-valuemax="100" aria-valuenow="96" aria-label="甜 96%"><i style="--v:96%"></i></span><b>96%</b></div>
-          <div class="meter-row"><span class="lbl" title="香">🍖</span><span class="meter" role="meter" aria-valuemin="0" aria-valuemax="100" aria-valuenow="88" aria-label="香 88%"><i style="--v:88%"></i></span><b>88%</b></div>
-          <div class="meter-row"><span class="lbl" title="清淡">🥗</span><span class="meter low" role="meter" aria-valuemin="0" aria-valuemax="100" aria-valuenow="9" aria-label="清淡 9%"><i style="--v:9%"></i></span><b>9%</b></div>
-          <div class="meter-row"><span class="lbl" title="咸">🧂</span><span class="meter low" role="meter" aria-valuemin="0" aria-valuemax="100" aria-valuenow="4" aria-label="咸 4%"><i style="--v:4%"></i></span><b>4%</b></div>
+          <div class="meter-row"><span class="lbl" title="{{taste_sweet}}">🍬</span><span class="meter" role="meter" aria-valuemin="0" aria-valuemax="100" aria-valuenow="96" aria-label="{{taste_sweet}} 96%"><i style="--v:96%"></i></span><b>96%</b></div>
+          <div class="meter-row"><span class="lbl" title="{{taste_savory}}">🍖</span><span class="meter" role="meter" aria-valuemin="0" aria-valuemax="100" aria-valuenow="88" aria-label="{{taste_savory}} 88%"><i style="--v:88%"></i></span><b>88%</b></div>
+          <div class="meter-row"><span class="lbl" title="{{taste_light}}">🥗</span><span class="meter low" role="meter" aria-valuemin="0" aria-valuemax="100" aria-valuenow="9" aria-label="{{taste_light}} 9%"><i style="--v:9%"></i></span><b>9%</b></div>
+          <div class="meter-row"><span class="lbl" title="{{taste_salty}}">🧂</span><span class="meter low" role="meter" aria-valuemin="0" aria-valuemax="100" aria-valuenow="4" aria-label="{{taste_salty}} 4%"><i style="--v:4%"></i></span><b>4%</b></div>
 
           <h3 class="mt">🍽️💕</h3>
-          <div class="seg" role="group" aria-label="你点什么？">
-            <button type="button" aria-pressed="true" data-order="rolls" aria-label="肉桂卷">🍥</button>
-            <button type="button" aria-pressed="false" data-order="fish" aria-label="清蒸鱼">🐟</button>
+          <div class="seg" role="group" aria-label="{{order_label}}">
+            <button type="button" aria-pressed="true" data-order="rolls" aria-label="{{order_rolls}}">🍥</button>
+            <button type="button" aria-pressed="false" data-order="fish" aria-label="{{order_fish}}">🐟</button>
           </div>
           <div class="say"><img class="face" src="images/face-cup.webp" width="176" height="176" alt=""><p class="game-msg" id="order-msg" role="status">🍥🍥 💕</p></div>
         </div>
@@ -246,20 +246,20 @@
   <section class="section" id="study" aria-labelledby="study-h">
     <div class="wrap two">
       <div class="col">
-        <header class="sec-head reveal"><p class="eyebrow" aria-hidden="true">🎓📅</p><h2 id="study-h">🎓 学校的打算</h2></header>
+        <header class="sec-head reveal"><p class="eyebrow" aria-hidden="true">🎓📅</p><h2 id="study-h">{{head_study}}</h2></header>
         <div class="card text reveal">
-          <p class="zh">他大学学的是电机工程<span class="gloss">(diànjī gōngchéng, electrical engineering)</span>，整天跟电脑<mark class="g" title="dǎ jiāodao">打交道</mark>，一天没有电脑<mark class="g" title="jiù shòubuliǎo">就受不了</mark>。他<mark class="g" title="dǎsuan">打算</mark>再申请一个电脑硕士<span class="gloss">(shuòshì, master's degree)</span>，<mark class="g" title="xīwàng">希望</mark>你也在选几门电脑课，<mark class="g" title="bùguǎn … dōu …">不管</mark>功课多难<mark class="g" title="bùguǎn … dōu …">都</mark>不怕。</p>
+          <p class="zh">{{blog_study}}</p>
         </div>
 
         <div class="card game reveal" id="homework">
           <h3>📚🔥 ⚔️ 😨</h3>
           <label class="range-label" for="diff">🔥 <b id="diff-val">5</b> / 10</label>
-          <input type="range" id="diff" min="1" max="10" value="5" step="1" aria-label="功课多难">
-          <div class="meter-row"><span class="lbl" title="怕">😨</span><span class="meter low" role="meter" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="怕 0%"><i style="--v:0%"></i></span><b>0%</b></div>
+          <input type="range" id="diff" min="1" max="10" value="5" step="1" aria-label="{{hw_label}}">
+          <div class="meter-row"><span class="lbl" title="{{hw_fear}}">😨</span><span class="meter low" role="meter" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="{{hw_fear}} 0%"><i style="--v:0%"></i></span><b>0%</b></div>
           <div class="say"><img class="face" src="images/face-suit.webp" width="176" height="176" alt=""><p class="game-msg" id="diff-msg" role="status">😎 🎮</p></div>
         </div>
 
-        <div class="terminal reveal" id="terminal" role="group" aria-label="假的电脑窗口">
+        <div class="terminal reveal" id="terminal" role="group" aria-label="{{term_label}}">
           <div class="term-bar"><i></i><i></i><i></i><span>🐶@☁️🎓</span></div>
           <pre id="term-out" aria-live="off"></pre>
         </div>
@@ -267,19 +267,19 @@
 
       <div class="col mosaic">
         <figure class="tile wide reveal">
-          <img src="images/hobby-ee-lab.webp" width="960" height="720" loading="lazy" decoding="async" alt="有示波器和测试设备的电机工程实验室">
+          <img src="images/hobby-ee-lab.webp" width="960" height="720" loading="lazy" decoding="async" alt="{{study_photo_1_alt}}">
           <figcaption>⚡🔬🎓</figcaption>
         </figure>
         <figure class="tile reveal">
-          <img src="images/hobby-gpu.webp" width="960" height="643" loading="lazy" decoding="async" alt="从上面看的GPU和它的内存芯片">
+          <img src="images/hobby-gpu.webp" width="960" height="643" loading="lazy" decoding="async" alt="{{study_photo_2_alt}}">
           <figcaption>GPU 🛒💥</figcaption>
         </figure>
         <figure class="tile reveal">
-          <img src="images/hobby-chip-die.webp" width="960" height="640" loading="lazy" decoding="async" alt="显微镜下带金线的芯片">
-          <figcaption>🔍 芯片</figcaption>
+          <img src="images/hobby-chip-die.webp" width="960" height="640" loading="lazy" decoding="async" alt="{{study_photo_3_alt}}">
+          <figcaption>{{study_photo_3_caption}}</figcaption>
         </figure>
         <figure class="tile wide reveal">
-          <img src="images/hobby-circuit-board.webp" width="960" height="720" loading="lazy" decoding="async" alt="木桌上的绿色电路板">
+          <img src="images/hobby-circuit-board.webp" width="960" height="720" loading="lazy" decoding="async" alt="{{study_photo_4_alt}}">
           <figcaption>🔌😍</figcaption>
         </figure>
       </div>
@@ -292,27 +292,27 @@
       <div class="col">
         <figure class="fitting reveal" id="fitting">
           <div class="fit-frame" id="fit-frame">
-            <img id="fit-img" src="images/suit.webp" width="1200" height="1009" loading="lazy" decoding="async" alt="穿蓝色圆点西装、打蓝色领结、别着红玫瑰的玉桂狗">
+            <img id="fit-img" src="images/suit.webp" width="1200" height="1009" loading="lazy" decoding="async" alt="{{fit_photo_alt}}">
             <span class="stamp" id="fit-stamp" aria-hidden="true">🙅</span>
           </div>
           <figcaption id="fit-cap">👔💙😍</figcaption>
         </figure>
         <div class="fit-controls reveal">
-          <button type="button" class="btn big" id="fit-btn" aria-label="换一件衣服">👗🔄</button>
+          <button type="button" class="btn big" id="fit-btn" aria-label="{{fit_btn}}">👗🔄</button>
           <span class="scoreline" aria-hidden="true">🙅 <b id="fit-count">0</b></span>
         </div>
       </div>
 
       <div class="col">
-        <header class="sec-head reveal"><p class="eyebrow" aria-hidden="true">🛍️</p><h2 id="style-h">🛍️ 购物标准</h2></header>
+        <header class="sec-head reveal"><p class="eyebrow" aria-hidden="true">🛍️</p><h2 id="style-h">{{head_style}}</h2></header>
         <div class="card text reveal">
-          <p class="zh"><mark class="g" title="zài … shàng">在购物上</mark>，他只有一个样子：蓝色的西装<span class="gloss">(xīzhuāng, suit)</span>和蓝色的领结。他<mark class="g" title="búzàihu">不在乎</mark>名牌，只在乎质量。便宜的衣服<mark class="g" title="piányi shì piányi … kěshì …">便宜是便宜</mark>，<mark class="g" title="piányi shì piányi … kěshì …">可是</mark>穿一两次就坏了。</p>
+          <p class="zh">{{blog_style}}</p>
         </div>
         <div class="card reveal" id="quality">
           <h3>🧵✅</h3>
-          <div class="meter-row"><span class="lbl" title="名牌">🏷️</span><span class="meter low" role="meter" aria-valuemin="0" aria-valuemax="100" aria-valuenow="2" aria-label="名牌 2%"><i style="--v:2%"></i></span><b>2%</b></div>
-          <div class="meter-row"><span class="lbl" title="质量">🧵</span><span class="meter" role="meter" aria-valuemin="0" aria-valuemax="100" aria-valuenow="98" aria-label="质量 98%"><i style="--v:98%"></i></span><b>98%</b></div>
-          <div class="meter-row"><span class="lbl" title="便宜的衣服穿两次">👕×2</span><span class="meter broken" role="meter" aria-valuemin="0" aria-valuemax="100" aria-valuenow="6" aria-label="便宜的衣服穿两次以后 6%"><i style="--v:6%"></i></span><b>6% 💥</b></div>
+          <div class="meter-row"><span class="lbl" title="{{quality_brand}}">🏷️</span><span class="meter low" role="meter" aria-valuemin="0" aria-valuemax="100" aria-valuenow="2" aria-label="{{quality_brand}} 2%"><i style="--v:2%"></i></span><b>2%</b></div>
+          <div class="meter-row"><span class="lbl" title="{{quality_quality}}">🧵</span><span class="meter" role="meter" aria-valuemin="0" aria-valuemax="100" aria-valuenow="98" aria-label="{{quality_quality}} 98%"><i style="--v:98%"></i></span><b>98%</b></div>
+          <div class="meter-row"><span class="lbl" title="{{quality_cheap_title}}">👕×2</span><span class="meter broken" role="meter" aria-valuemin="0" aria-valuemax="100" aria-valuenow="6" aria-label="{{quality_cheap_aria}} 6%"><i style="--v:6%"></i></span><b>6% 💥</b></div>
         </div>
       </div>
     </div>
@@ -322,9 +322,9 @@
   <section class="section" id="rules" aria-labelledby="rules-h">
     <div class="wrap two">
       <div class="col">
-        <header class="sec-head reveal"><p class="eyebrow" aria-hidden="true">👧💖</p><h2 id="rules-h">📝 女朋友的标准</h2></header>
+        <header class="sec-head reveal"><p class="eyebrow" aria-hidden="true">👧💖</p><h2 id="rules-h">{{head_rules}}</h2></header>
         <div class="card text reveal">
-          <p class="zh">他的标准是：你不能是间谍<span class="gloss">(jiàndié, spy)</span>，不能是他的同事，也不能是猫。另外，你得<mark class="g" title="bǐ … hái …">比他还</mark>爱吃肉桂卷，还要听得懂他的笑话<span class="gloss">(xiàohua, joke)</span>：他<mark class="g" title="yī … jiù …">一</mark>开玩笑，你<mark class="g" title="yī … jiù …">就</mark>笑。</p>
+          <p class="zh">{{blog_rules}}</p>
         </div>
 
         <div class="card reveal" id="joke">
@@ -332,8 +332,8 @@
           <p class="small" aria-hidden="true">🎤😂 ➡️ 😆</p>
           <blockquote id="joke-text">🐛 ➡️ 🐶🍥 ➡️ ↩️</blockquote>
           <div class="joke-actions">
-            <button type="button" class="btn small" id="laugh">😆 哈哈哈</button>
-            <button type="button" class="btn small ghost" id="joke-next" aria-label="下一个笑话">➡️🎤</button>
+            <button type="button" class="btn small" id="laugh">{{joke_laugh}}</button>
+            <button type="button" class="btn small ghost" id="joke-next" aria-label="{{joke_next}}">➡️🎤</button>
             <span class="scoreline" aria-hidden="true">😆 <b id="laugh-count">0</b></span>
           </div>
           <div class="say"><img class="face" src="images/face-laugh.webp" width="176" height="176" alt=""><p class="game-msg" id="laugh-msg" role="status">👀</p></div>
@@ -343,16 +343,16 @@
       <div class="col">
         <form class="card checker reveal" id="checker" aria-labelledby="checker-h" onsubmit="return false">
           <h3 id="checker-h">✅ 👧❓</h3>
-          <fieldset data-q="spy" data-ok="no"><legend>🕵️ 间谍 ❓</legend>
-            <label><input type="radio" name="spy" value="yes"><span aria-label="是">✅</span></label><label><input type="radio" name="spy" value="no"><span aria-label="不是">❌</span></label></fieldset>
-          <fieldset data-q="coworker" data-ok="no"><legend>👔👥 同事 ❓</legend>
-            <label><input type="radio" name="coworker" value="yes"><span aria-label="是">✅</span></label><label><input type="radio" name="coworker" value="no"><span aria-label="不是">❌</span></label></fieldset>
-          <fieldset data-q="cat" data-ok="no"><legend>🐱 猫 ❓</legend>
-            <label><input type="radio" name="cat" value="yes"><span aria-label="是">✅</span></label><label><input type="radio" name="cat" value="no"><span aria-label="不是">❌</span></label></fieldset>
+          <fieldset data-q="spy" data-ok="no"><legend>{{q_spy}}</legend>
+            <label><input type="radio" name="spy" value="yes"><span aria-label="{{answer_yes}}">✅</span></label><label><input type="radio" name="spy" value="no"><span aria-label="{{answer_no}}">❌</span></label></fieldset>
+          <fieldset data-q="coworker" data-ok="no"><legend>{{q_coworker}}</legend>
+            <label><input type="radio" name="coworker" value="yes"><span aria-label="{{answer_yes}}">✅</span></label><label><input type="radio" name="coworker" value="no"><span aria-label="{{answer_no}}">❌</span></label></fieldset>
+          <fieldset data-q="cat" data-ok="no"><legend>{{q_cat}}</legend>
+            <label><input type="radio" name="cat" value="yes"><span aria-label="{{answer_yes}}">✅</span></label><label><input type="radio" name="cat" value="no"><span aria-label="{{answer_no}}">❌</span></label></fieldset>
           <fieldset data-q="rolls" data-ok="yes"><legend>🍥💕 &gt; 🐶🍥💕 ❓</legend>
-            <label><input type="radio" name="rolls" value="yes"><span aria-label="是">✅</span></label><label><input type="radio" name="rolls" value="no"><span aria-label="不是">❌</span></label></fieldset>
+            <label><input type="radio" name="rolls" value="yes"><span aria-label="{{answer_yes}}">✅</span></label><label><input type="radio" name="rolls" value="no"><span aria-label="{{answer_no}}">❌</span></label></fieldset>
           <fieldset data-q="laugh" data-ok="yes"><legend>🎤 ➡️ 😆 ❓</legend>
-            <label><input type="radio" name="laugh" value="yes"><span aria-label="是">✅</span></label><label><input type="radio" name="laugh" value="no"><span aria-label="不是">❌</span></label></fieldset>
+            <label><input type="radio" name="laugh" value="yes"><span aria-label="{{answer_yes}}">✅</span></label><label><input type="radio" name="laugh" value="no"><span aria-label="{{answer_no}}">❌</span></label></fieldset>
           <div class="say"><img class="face" src="images/face-suit.webp" width="176" height="176" alt=""><div class="verdict" id="verdict" role="status" aria-live="polite" data-state="idle">❓❓❓❓❓</div></div>
         </form>
       </div>
@@ -365,17 +365,17 @@
       <div class="contact-card card reveal">
         <div class="contact-text">
           <p class="eyebrow" aria-hidden="true">📞💙</p>
-          <h2 id="contact-h">💌 发送爱的邮件</h2>
-          <p class="zh big"><mark class="g" title="yàoshi … jiù …">要是</mark>你就是他要找的人，<mark class="g" title="yàoshi … jiù …">就</mark>快在这里跟他联系吧！<mark class="g" title="shíjìshang">实际上</mark>，他已经在等你了！</p>
+          <h2 id="contact-h">{{head_contact}}</h2>
+          <p class="zh big">{{blog_contact}}</p>
           <p class="status" aria-hidden="true"><i class="dot"></i> 🟢 📬 ⟳</p>
-          <img class="plane-deco" src="images/plane.webp" width="640" height="498" loading="lazy" decoding="async" alt="开着蓝粉色小飞机的玉桂狗">
+          <img class="plane-deco" src="images/plane.webp" width="640" height="498" loading="lazy" decoding="async" alt="{{contact_plane_alt}}">
         </div>
         <form class="contact-form" id="contact-form" novalidate>
-          <label for="c-name" title="你的名字">👤</label>
-          <input id="c-name" name="name" type="text" autocomplete="off" aria-label="你的名字">
-          <label for="c-msg" title="你想对他说什么">💬</label>
-          <textarea id="c-msg" name="message" rows="4" placeholder="🍥💕🐶" aria-label="你想对他说什么"></textarea>
-          <button class="btn big" type="submit">✈️ 发送爱的邮件</button>
+          <label for="c-name" title="{{contact_name}}">👤</label>
+          <input id="c-name" name="name" type="text" autocomplete="off" aria-label="{{contact_name}}">
+          <label for="c-msg" title="{{contact_msg}}">💬</label>
+          <textarea id="c-msg" name="message" rows="4" placeholder="🍥💕🐶" aria-label="{{contact_msg}}"></textarea>
+          <button class="btn big" type="submit">{{contact_send}}</button>
           <div class="say"><img class="face plane" src="images/plane.webp" width="640" height="498" alt=""><p class="game-msg" id="c-status" role="status">🎓 📨🚫</p></div>
         </form>
       </div>
@@ -385,10 +385,10 @@
 
 <footer class="footer">
   <div class="wrap">
-    <p class="foot-title">玉桂狗征女朋友 🐶💙</p>
+    <p class="foot-title">{{footer_title}}</p>
     <p aria-hidden="true">🐶 © Sanrio · 🎓📚 · 🚫💰 · 🎭 📈💔🐱</p>
     <details class="credits">
-      <summary title="照片">📷</summary>
+      <summary title="{{credits_toggle}}">📷</summary>
       <ul>
         <li>🐶 © Sanrio</li>
         <li>🍥 <a href="https://commons.wikimedia.org/wiki/File:Cinnamon_roll_-_Clifton_Road_Coffee_2026-03-17.jpg">Andy Li</a> · <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a></li>

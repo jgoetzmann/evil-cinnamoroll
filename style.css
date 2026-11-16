@@ -51,6 +51,7 @@ body {
   overflow-x: clip;
 }
 img { max-width: 100%; }
+html.js:not(.ready) body > * { visibility: hidden; } /* script.js fills in the text from content.txt, then adds .ready */
 a { color: var(--blue-dd); }
 :focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; border-radius: 8px; }
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }

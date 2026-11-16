@@ -1,10 +1,11 @@
 /* =====================================================================
    玉桂狗征女朋友 · behaviour
-   1 helpers · 2 sky + scroll · 3 sparkles · 4 hero · 5 stock chart
-   6 mini-games · 7 checker + jokes · 8 contact form · 9 tape + tools
+   0 content.txt (all the Chinese text) · 1 helpers · 2 sky + scroll
+   3 sparkles · 4 hero · 5 stock chart · 6 mini-games · 7 checker + jokes
+   8 contact form · 9 tape + tools
    No dependencies. Everything is deterministic except the mini-games.
    ===================================================================== */
-(() => {
+(async () => {
   'use strict';
 
   /* ---------- 1. helpers ---------- */
@@ -33,6 +34,65 @@
     return n;
   };
   const restart = (el, cls) => { el.classList.remove(cls); void el.offsetWidth; el.classList.add(cls); };
+
+  /* ---------- 0. text: every Chinese string on the page lives in content.txt ----------
+     content.txt is "key = text" lines. index.html holds {{key}} placeholders (in text and in
+     attributes) and this file asks for T('key'). Inside a line, {word|pinyin} makes a grammar
+     highlight and [pinyin, English] makes a gloss; {name} is a number this file fills in. */
+  const C = Object.create(null);
+  const parseContent = (src) => {
+    src.replace(/^﻿/, '').split(/\r?\n/).forEach((line, n) => {
+      if (!line.trim() || line.trimStart().startsWith('#')) return;
+      const eq = line.indexOf('=');
+      const key = eq > 0 ? line.slice(0, eq).trim() : '';
+      if (!/^\w+$/.test(key)) { console.warn(`content.txt line ${n + 1}: expected "key = text"`); return; }
+      if (key in C) console.warn(`content.txt line ${n + 1}: "${key}" appears twice, the last one wins`);
+      C[key] = line.slice(eq + 1).trim();
+    });
+  };
+  const T = (key, vars = {}) => {
+    if (!(key in C)) { console.warn(`content.txt: no line for "${key}"`); return '⚠ ' + key; }
+    return C[key].replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m));
+  };
+  const rich = (s) => { // plain text + <mark class="g" title="pinyin"> + <span class="gloss">, built as DOM (never innerHTML)
+    const frag = document.createDocumentFragment();
+    const re = /\{([^{}|]+)\|([^{}]+)\}|\[([^\]]+)\]/g;
+    let last = 0, m;
+    while ((m = re.exec(s))) {
+      if (m.index > last) frag.append(s.slice(last, m.index));
+      if (m[1] != null) { const mk = h('mark', 'g', m[1]); mk.title = m[2]; frag.append(mk); }
+      else frag.append(h('span', 'gloss', `(${m[3]})`));
+      last = re.lastIndex;
+    }
+    if (last < s.length) frag.append(s.slice(last));
+    return frag;
+  };
+  const fillPage = () => {
+    const ph = /\{\{(\w+)\}\}/g;
+    document.querySelectorAll('*').forEach((el) => {
+      [...el.attributes].forEach((a) => { if (a.value.includes('{{')) a.value = a.value.replace(ph, (_, k) => T(k)); });
+    });
+    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+      acceptNode: (n) => (n.nodeValue.includes('{{') && !/^(SCRIPT|STYLE)$/.test(n.parentNode.nodeName) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT),
+    });
+    const nodes = []; while (walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach((n) => {
+      const out = [];
+      n.nodeValue.split(/\{\{(\w+)\}\}/).forEach((part, i) => { if (i % 2) out.push(rich(T(part))); else if (part) out.push(part); });
+      n.replaceWith(...out);
+    });
+    document.title = T('page_title');
+  };
+  try {
+    const res = await fetch('content.txt', { cache: 'no-cache' }); // no-cache: an edit shows up on the next reload
+    if (!res.ok) throw new Error(res.status + ' ' + res.statusText);
+    parseContent(await res.text());
+  } catch (err) {
+    console.error('content.txt could not be loaded:', err);
+    document.body.prepend(h('p', 'noscript', '⚠️ content.txt could not be loaded. Open the site through a web server (python3 -m http.server) or GitHub Pages: a page opened straight from disk cannot read it.'));
+  }
+  fillPage();
+  document.documentElement.classList.add('ready');
 
   /* ---------- 2. sky, scroll progress, reveal, nav ---------- */
   const sky = $('#sky');
@@ -143,18 +203,18 @@
   }
 
   /* ---------- 5. the spoof stock chart ---------- */
-  const EVENTS = [ // no English: emoji, plus words that are in the blog text
-    { d: '2024-09-02', icon: '🔔', title: '🔔 🐶🏢', text: '💲12.00 · ☁️☁️☁️' },
-    { d: '2025-02-18', icon: '🚀', title: 'GPU 🎮🔥', text: '⏱️ 4 · 🛒💨 · 🌍 涨 📈' },
-    { d: '2025-08-05', icon: '🍥', title: '🍥❄️ GPU', text: '🍥 ➡️ ⚡ +1 · 📊✨' },
-    { d: '2025-11-03', icon: '🤫', title: '🤫 外遇', text: '🐱 🏢3️⃣ · 🤐' },
-    { d: '2026-01-20', icon: '🏔️', title: '🏔️ $486', text: '☁️👑 · 🎤🔑❓ · 😂' },
-    { d: '2026-01-21', icon: '💔', title: '💔 外遇!', text: '📸 🐶💞🐱🕵️ · 👔👥 · 📉 −23%' },
-    { d: '2026-03-09', icon: '🎙️', title: '🎙️🐱', text: '🍥🍥🍥💬 · 🍽️😒 · 跌 📉' },
-    { d: '2026-06-01', icon: '📦', title: '📦🎮↩️', text: '📝🥺 · 🧂😖' },
-    { d: '2026-09-01', icon: '🗓️', title: '🗓️ 忘了开会 😵', text: '👥⏳3 · 🔑☁️' },
-    { d: '2026-11-13', icon: '💌', title: '💌 玉桂狗征女朋友', text: '📉 · ❓💕 · 说不定就是你！' },
-  ];
+  const EVENTS = [ // the date and icon pick the spot on the chart; each story's title + text are news_<n>_title / news_<n>_text in content.txt
+    { d: '2024-09-02', icon: '🔔' },
+    { d: '2025-02-18', icon: '🚀' },
+    { d: '2025-08-05', icon: '🍥' },
+    { d: '2025-11-03', icon: '🤫' },
+    { d: '2026-01-20', icon: '🏔️' },
+    { d: '2026-01-21', icon: '💔' },
+    { d: '2026-03-09', icon: '🎙️' },
+    { d: '2026-06-01', icon: '📦' },
+    { d: '2026-09-01', icon: '🗓️' },
+    { d: '2026-11-13', icon: '💌' },
+  ].map((e, k) => ({ ...e, title: T(`news_${k + 1}_title`), text: T(`news_${k + 1}_text`) }));
   const KEYFRAMES = [
     ['2024-09-02', 12], ['2024-12-02', 21], ['2025-02-17', 38], ['2025-02-18', 63], ['2025-06-02', 150], ['2025-08-05', 228],
     ['2025-11-03', 318], ['2026-01-20', 486], ['2026-01-21', 372], ['2026-02-10', 301], ['2026-03-09', 236],
@@ -214,11 +274,11 @@
   const phaseText = (i) => {
     if (i >= N) return '🚀💌';
     if (i === 0) return '🔔';
-    if (i < affairIdx) return '▲ 涨 📈';
+    if (i < affairIdx) return T('phase_up');
     if (i < peakIdx) return '▲ 🤫';
     if (i === peakIdx) return '🏔️';
-    if (i === revealIdx) return '💔 外遇!';
-    return '▼ 跌 📉';
+    if (i === revealIdx) return T('phase_reveal');
+    return T('phase_down');
   };
   const moodOf = (i) => {
     const dd = 1 - P[i] / runMax[i];
@@ -243,9 +303,12 @@
     const base = ys(0);
     const pw = clamp(W * 0.085, 46, 78); // rider width
 
-    const t = svgEl('title', { id: 'chart-title' }, svg); t.textContent = '玉桂芯片的股票（虚构）';
+    const t = svgEl('title', { id: 'chart-title' }, svg); t.textContent = T('chart_title');
     const d = svgEl('desc', { id: 'chart-desc' }, svg);
-    d.textContent = `虚构的股票图。从 ${usd(P[0])}（${fmtDate(days[0])}）涨到最高 ${usd(PEAK)}（${fmtDate(days[peakIdx])}），第二天大家发现他有过外遇，跌了 ${pctAbs(revealDrop, 0)}，后来股票就一直跌，到 ${usd(LAST)}（${fmtDate(days[N - 1])}），比最高点低了 ${pctAbs(fromPeakNow, 0)}。`;
+    d.textContent = T('chart_desc', {
+      start_price: usd(P[0]), start_date: fmtDate(days[0]), peak_price: usd(PEAK), peak_date: fmtDate(days[peakIdx]),
+      drop: pctAbs(revealDrop, 0), last_price: usd(LAST), last_date: fmtDate(days[N - 1]), from_peak: pctAbs(fromPeakNow, 0),
+    });
 
     const defs = svgEl('defs', {}, svg);
     const clip = svgEl('clipPath', { id: 'clip-reveal' }, defs);
@@ -270,10 +333,10 @@
     // the affair (secret) band + "future" region
     const bx = xs(affairIdx), bw = xs(revealIdx) - xs(affairIdx);
     svgEl('rect', { class: 'band', x: bx, y: M.t, width: bw, height: base - M.t, rx: 6 }, svg);
-    const bl = svgEl('text', { class: 'band-lbl', transform: `translate(${bx + bw / 2 + 4} ${base - 12}) rotate(-90)` }, svg); bl.textContent = '外遇 🤫';
+    const bl = svgEl('text', { class: 'band-lbl', transform: `translate(${bx + bw / 2 + 4} ${base - 12}) rotate(-90)` }, svg); bl.textContent = T('band_label');
     svgEl('rect', { x: xs(N - 1), y: M.t, width: W - M.r - xs(N - 1), height: base - M.t, fill: 'rgba(47,134,214,.045)', rx: 6 }, svg);
     refs.future = svgEl('text', { class: 'future-lbl', transform: `translate(${(xs(N - 1) + W - M.r) / 2 + 4} ${M.t + 52}) rotate(-90)`, 'text-anchor': 'end' }, svg);
-    refs.future.textContent = '说不定就是你！'; refs.future.style.transition = 'opacity .4s';
+    refs.future.textContent = T('future_label'); refs.future.style.transition = 'opacity .4s';
     svgEl('line', { class: 'grid', x1: M.l, x2: W - M.r, y1: base, y2: base, stroke: '#c9d8e8' }, svg);
 
     // everything that is drawn progressively lives in a clipped group
@@ -302,12 +365,12 @@
     label(revealIdx, (grp) => {
       const cxp = clamp(xs(peakIdx), 80, W - 80);
       const a = svgEl('text', { class: 'ann', x: cxp, y: ys(PEAK) - 24, 'text-anchor': 'middle' }, grp); a.textContent = `🏔️ ${usd(PEAK)}`;
-      const b = svgEl('text', { class: 'ann', x: cxp, y: ys(PEAK) - 9, 'text-anchor': 'middle' }, grp); b.textContent = `💔 外遇 ${pctSigned(revealDrop, 0)}`;
+      const b = svgEl('text', { class: 'ann', x: cxp, y: ys(PEAK) - 9, 'text-anchor': 'middle' }, grp); b.textContent = T('ann_peak_drop', { drop: pctSigned(revealDrop, 0) });
     });
     const ri = Math.round(peakIdx * 0.45), fi = revealIdx + Math.round((N - 1 - revealIdx) * 0.3);
     if (!narrow) { // on a phone the key under the chart names the two colours instead
-      label(ri, (grp) => keyed(grp, xs(ri) + 6, ys(P[ri]) + 30, '#2f86d6', '涨', false));
-      label(fi, (grp) => keyed(grp, xs(fi) - 6, ys(P[fi]) + 30, '#d6456b', '跌', true));
+      label(ri, (grp) => keyed(grp, xs(ri) + 6, ys(P[ri]) + 30, '#2f86d6', T('ann_rise'), false));
+      label(fi, (grp) => keyed(grp, xs(fi) - 6, ys(P[fi]) + 30, '#d6456b', T('ann_fall'), true));
     }
     label(N - 1, (grp) => {
       const nx = narrow ? xs(N - 1) + 8 : xs(N - 1) - pw * 0.55 - 6, ny = ys(LAST) - (narrow ? 92 : 60); // phone: lift it above the Sept pin
@@ -429,7 +492,7 @@
   })();
 
   // playback
-  const setPlayLabel = () => { playBtn.textContent = playing ? '⏸️' : '▶️'; playBtn.setAttribute('aria-label', playing ? '暂停' : '播放'); };
+  const setPlayLabel = () => { playBtn.textContent = playing ? '⏸️' : '▶️'; playBtn.setAttribute('aria-label', playing ? T('btn_pause') : T('btn_play')); };
   const spawnPuff = (emoji) => {
     if (reduced || wrap.querySelectorAll('.puff').length > 22) return;
     const p = h('span', 'puff', emoji); const x = xs(cursor), y = ys(valueAt(cursor));
@@ -544,7 +607,7 @@
   // rolls
   (() => {
     const rolls = $$('#rolls .roll'), row = $('#rolls .roll-row'), msg = $('#rolls-msg');
-    const texts = ['0/3 🍥', '1/3 😋', '2/3 😋😋', '3/3 ✅ 无论多忙 🏃'];
+    const texts = ['0/3 🍥', '1/3 😋', '2/3 😋😋', T('rolls_done_msg')];
     const count = () => rolls.filter((r) => r.classList.contains('eaten')).length;
     const crumbs = (b) => {
       const rr = b.getBoundingClientRect(), pr = row.getBoundingClientRect();
@@ -563,7 +626,7 @@
   // fish vs rolls
   (() => {
     const btns = $$('#taste .seg button'), msg = $('#order-msg');
-    const out = { rolls: '🍥🍥 💕', fish: '各点各的吧 🐟 | 🍥' };
+    const out = { rolls: '🍥🍥 💕', fish: T('order_fish_msg') };
     btns.forEach((b) => b.addEventListener('click', () => {
       btns.forEach((o) => o.setAttribute('aria-pressed', o === b)); msg.textContent = out[b.dataset.order];
     }));
@@ -571,13 +634,13 @@
   // homework
   (() => {
     const r = $('#diff'), val = $('#diff-val'), msg = $('#diff-msg');
-    const say = (v) => (v <= 3 ? '😎 🎮' : v <= 6 ? '😎 🍥' : v <= 9 ? '😎 😁' : '😎 不管功课多难都不怕。');
+    const say = (v) => (v <= 3 ? '😎 🎮' : v <= 6 ? '😎 🍥' : v <= 9 ? '😎 😁' : T('hw_max_msg'));
     r.addEventListener('input', () => { val.textContent = r.value; msg.textContent = say(Number(r.value)); });
   })();
   // terminal typewriter
   (() => {
     const out = $('#term-out'), box = $('#terminal');
-    const script = '$ GPU 🎮\n🔥🔥🔥 ✅\n$ 🎓 ➡️ 💻\n████████░░ 80%\n$ 📚🔥🔥🔥\n😨 = 0   # 不管功课多难都不怕\n$ 🍥\n3 / 3 ✔   # 非吃三个不可\n';
+    const script = `$ GPU 🎮\n🔥🔥🔥 ✅\n$ 🎓 ➡️ 💻\n████████░░ 80%\n$ 📚🔥🔥🔥\n😨 = 0   # ${T('term_note_1')}\n$ 🍥\n3 / 3 ✔   # ${T('term_note_2')}\n`;
     let ran = false;
     const type = () => {
       if (reduced) { out.textContent = script; return; }
@@ -655,18 +718,18 @@
       const btn = $('button[type="submit"]', form); const r = btn.getBoundingClientRect();
       status.textContent = '✈️☁️';
       const done = () => {
-        status.textContent = '✅📨 🐶💬 他已经在等你了！💙 (📨🚫)';
+        status.textContent = T('contact_sent');
         burstAt(btn, 50); msgBox.value = '';
       };
       if (reduced) { done(); return; }
       const sx = r.left + r.width / 2 - 75, sy = r.top - 30, ex = innerWidth + 220, ey = -200;
-      const T = (x, y, rot, s) => `translate(${x}px,${y}px) rotate(${rot}deg) scaleX(-1) scale(${s})`;
+      const xf = (x, y, rot, s) => `translate(${x}px,${y}px) rotate(${rot}deg) scaleX(-1) scale(${s})`;
       plane.style.opacity = 1;
       plane.animate([
-        { transform: T(sx, sy, -4, 0.5), opacity: 0 },
-        { offset: 0.12, transform: T(sx + 30, sy - 30, -12, 0.8), opacity: 1 },
-        { offset: 0.55, transform: T((sx + ex) / 2, sy - 190, -18, 1), opacity: 1 },
-        { transform: T(ex, ey, -26, 0.7), opacity: 1 },
+        { transform: xf(sx, sy, -4, 0.5), opacity: 0 },
+        { offset: 0.12, transform: xf(sx + 30, sy - 30, -12, 0.8), opacity: 1 },
+        { offset: 0.55, transform: xf((sx + ex) / 2, sy - 190, -18, 1), opacity: 1 },
+        { transform: xf(ex, ey, -26, 0.7), opacity: 1 },
       ], { duration: 2600, easing: 'cubic-bezier(.45,.1,.3,1)' }).finished.then(() => { plane.style.opacity = 0; done(); }, done);
     });
   })();

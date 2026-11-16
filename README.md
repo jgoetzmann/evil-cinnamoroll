@@ -6,7 +6,8 @@ A one-page Chinese class blog (an ad for a boyfriend/girlfriend, 300–400字) t
 website. Plain HTML, CSS and JavaScript: no build step, no dependencies. GitHub Pages serves it as it is.
 
 ```
-index.html   the page and the blog text (the seven paragraphs are the assignment)
+content.txt  ALL the Chinese text: the seven blog paragraphs, headings, labels, news (edit this one)
+index.html   the page layout
 style.css    all styling
 script.js    the stock chart, mini-games, sparkles, application form
 images/      Cinnamoroll photos (supplied) + 5 hobby photos from Wikimedia Commons
@@ -30,7 +31,7 @@ python3 -m http.server 8000     # then open http://localhost:8000
 - **Stock chart:** a spoof price history of 玉桂芯片 (CINN). It plays like a movie, with Cinnamoroll's little plane riding the
   line. Hover for a tooltip, drag the slider (arrow keys work), click a news pin, or press *If you apply…* for a made-up
   rebound. A table view is under the news timeline. All data is generated from a fixed seed in `script.js`: change the
-  `KEYFRAMES` and `EVENTS` to rewrite the story.
+  `KEYFRAMES` and `EVENTS` (dates, icons) to rewrite the story; the words of each news item are in `content.txt`.
 - **Mini-games:** find his keys, the three-rolls-a-day tracker, the fish test, the homework-fear slider, the outfit
   fitting room (he always rejects it), the application checker and the laugh test.
 - **Reading tools** (bottom left): hide/show the pinyin + English glosses, and highlight the grammar patterns
@@ -43,11 +44,24 @@ Every label, button, caption and chart annotation is emoji or Chinese (section t
 女朋友的标准, 发送爱的邮件 …). The only Latin letters left are the pinyin glosses, `GPU` (it is in the blog text) and the
 photo credits. Little Cinnamoroll faces (cropped from the supplied photos) "say" the game messages.
 
-## Editing the blog text
+## Editing the text (`content.txt`)
 
-The seven paragraphs live in `index.html` inside `<p class="zh">`. Glosses are `<span class="gloss">(…)</span>` and grammar
-patterns are `<mark class="g" title="…">`. The heading font is a subset containing only the characters used when it was
-built, so any new Chinese character falls back to a system font (it still displays; it just isn't in the cute font).
+Every Chinese string on the page lives in `content.txt`, one `key = text` line each: the seven blog paragraphs
+(first in the file), headings, button labels, tooltips, photo descriptions, news stories and game messages. The page
+reads the file when it loads, so: edit a line, save (as UTF-8), reload. Keep the key on the left; change only the text.
+The comments at the top of the file explain the rest.
+
+Inside the blog paragraphs, two small marks replace the old HTML:
+
+- `{后来|hòulái}` is a grammar highlight (word, then pinyin; the 🖍️ button shows it, hover reads the pinyin).
+- `[xīnpiàn, chip]` is the small grey gloss `(xīnpiàn, chip)` (the 👁️ button hides it).
+
+A line you delete shows as `⚠ key` on the page (and a warning in the browser console), so a typo is easy to spot. To
+see your edits on your own computer, run the local server (see *Try it locally*): a page opened straight from disk (double-clicking
+`index.html`) cannot read `content.txt`, and shows a note saying so. The heading font is a subset containing only the
+characters used when it was built, so any new Chinese character falls back to a system font (it still displays; it just
+isn't in the cute font). The one thing that is not in `content.txt` is the link-preview text in `index.html`'s `<head>`
+(`<title>`, `description`, `og:` tags), because chat apps read that without running any JavaScript.
 
 ## Credits and licences
 
